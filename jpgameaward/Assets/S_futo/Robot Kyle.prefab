@@ -630,10 +630,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974663806794766590}
-  - component: {fileID: 8497564089936393604}
-  - component: {fileID: 6781821305211270114}
-  - component: {fileID: 6781821305211270118}
-  - component: {fileID: 6781821305211270113}
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Untagged
@@ -657,85 +653,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.567, y: 86.263, z: -2.924}
---- !u!95 &8497564089936393604
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259536983156091629}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &6781821305211270114
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259536983156091629}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &6781821305211270118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259536983156091629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3759e2aae0f7b9a47bb98fc64bf3c543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingMode: 1
-  m_WrapMode: 0
-  m_Clip: {fileID: 7400000, guid: 37c6cfe59f56e8a4799011397a870a8b, type: 3}
-  m_States:
-  - clip: {fileID: 7400000, guid: 37c6cfe59f56e8a4799011397a870a8b, type: 3}
-    name: Default
-    defaultState: 1
-  - clip: {fileID: 7400012, guid: 37c6cfe59f56e8a4799011397a870a8b, type: 3}
-    name: Run
-    defaultState: 0
-  - clip: {fileID: 7400014, guid: 37c6cfe59f56e8a4799011397a870a8b, type: 3}
-    name: Sprint
-    defaultState: 0
-  - clip: {fileID: 7400000, guid: 7988402060e4a2d46ac2a18490acfec0, type: 2}
-    name: Jump
-    defaultState: 0
---- !u!114 &6781821305211270113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259536983156091629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13f9f9a99a0d77741a0b6159c79ed5cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onGround: 1
-  inJumping: 0
 --- !u!1 &3490584124328888188
 GameObject:
   m_ObjectHideFlags: 0
