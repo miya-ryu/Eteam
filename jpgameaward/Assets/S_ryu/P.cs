@@ -24,24 +24,23 @@ public class P : MonoBehaviour
         //横移動とダッシュ
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-0.1f, 0f, 0f);
+            transform.Translate(0f, 0f, -0.1f);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(0.1f, 0f, 0f);
+            transform.Translate(0f, 0f, 0.1f);
         }
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-0.4f, 0f, 0f);
+            transform.Translate(0f, 0f, -0.25f);
         }
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(0.4f, 0f, 0f);
+            transform.Translate(0f, 0f, 0.25f);
         }
         //スペースでジャンプ
         if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、
         {
-            Debug.Log("!!");
             if (Ground == true)//  もし、Groundedがtrueなら、
             {
                 Ground = false;
@@ -52,8 +51,7 @@ public class P : MonoBehaviour
         //アニメーションの再生
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
-            //ジャンプ中のとき
-            if (inJumping == true)
+            if (inJumping == true) //ジャンプ中のとき
             {
                 simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
             }
@@ -67,11 +65,11 @@ public class P : MonoBehaviour
                 simpleAnimation.CrossFade("Run", 0.1f);         //普通移動アニメーションを再生
             }
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (inJumping == true) //ジャンプ中のとき
         {
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
         }
-        else if (inJumping) { }
+
         else
         {
             simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
