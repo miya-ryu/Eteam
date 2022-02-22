@@ -14,13 +14,13 @@ public class PlayerController: MonoBehaviour
     Rigidbody rb;
 
     //移動速度の定義
-    float speed = 6f;
+    float speed = 8f;
 
     //ダッシュ速度の定義
-    float sprintspeed = 9f;
+    float sprintspeed = 11f;
 
     //方向転換速度の定義
-    float angleSpeed = 200;
+    float angleSpeed = 0;
 
     //移動の係数格納用変数
     float v;
@@ -28,6 +28,9 @@ public class PlayerController: MonoBehaviour
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
+
+    //プレイヤーの初期位置
+    private Vector3 Player_pos;
 
     void Start()
     {
@@ -39,11 +42,27 @@ public class PlayerController: MonoBehaviour
 
         //キャラクターのSimpleAnimationを取得
         simpleAnimation = this.GetComponent<SimpleAnimation>();
+
+        //プレイヤーの最初の時点でのポジション
+        //Player_pos = GetComponent<Transform>().position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //進む方向がわかるように、初期位置を現在地の座標差分を取得
+        Vector3 diff = transform.position - Player_pos;
+
+        //前回の位置の更新
+        Player_pos = transform.position;
+
+        //ベクトルの長さが0.1fより大きい場合
+        if (diff.magnitude > 0.1f)
+        {
+            //プレイヤーの向きを変える
+            transform.rotation = Quaternion.LookRotation(diff);
+        }
+
         //Shift+上下キーでダッシュ、上下キーで通常移動、それ以外は停止
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift))
             v = Time.deltaTime * sprintspeed;
