@@ -630,9 +630,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974663806794766590}
+<<<<<<< HEAD
   - component: {fileID: 8497564089936393604}
   - component: {fileID: 6781821305211270118}
   - component: {fileID: 6781821305211270113}
+=======
+>>>>>>> origin/FUTO
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Untagged
@@ -656,6 +659,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.567, y: 86.263, z: -2.924}
+<<<<<<< HEAD
 --- !u!95 &8497564089936393604
 Animator:
   serializedVersion: 3
@@ -719,6 +723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onGround: 1
   inJumping: 0
+=======
+>>>>>>> origin/FUTO
 --- !u!1 &3490584124328888188
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class PlayerController: MonoBehaviour
     float sprintspeed = 11f;
 
     //方向転換速度の定義
-    float angleSpeed = 200;
+    float angleSpeed = 0;
 
     //移動の係数格納用変数
     float v;
