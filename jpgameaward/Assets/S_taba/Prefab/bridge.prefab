@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 272003289242535243}
   m_Layer: 0
   m_Name: bridge
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22215,7 +22215,7 @@ GameObject:
   - component: {fileID: 6697247276419706228}
   m_Layer: 0
   m_Name: bridge (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22665,7 +22665,7 @@ GameObject:
   - component: {fileID: 6111803292395901248}
   m_Layer: 0
   m_Name: bridge (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22946,7 +22946,7 @@ GameObject:
   - component: {fileID: 1196375720929106164}
   m_Layer: 0
   m_Name: bridge (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44959,7 +44959,7 @@ GameObject:
   - component: {fileID: 7532190526619668081}
   m_Layer: 0
   m_Name: bridge (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45146,7 +45146,7 @@ GameObject:
   - component: {fileID: 3365482400090905787}
   m_Layer: 0
   m_Name: bridge (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45469,7 +45469,7 @@ GameObject:
   - component: {fileID: 8595155615232940922}
   m_Layer: 0
   m_Name: bridge (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
