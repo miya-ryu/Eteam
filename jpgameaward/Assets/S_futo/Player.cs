@@ -54,9 +54,13 @@ public class Player : MonoBehaviour
         }
 
         //アタックテスト
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.A))
         {
-            simpleAnimation.CrossFade("kick", 0.1f);
+            if (Ground == true)
+            {
+                Debug.Log("押せている");
+                simpleAnimation.CrossFade("kick", 0.1f);
+            }
         }
 
         //アニメーションの再生

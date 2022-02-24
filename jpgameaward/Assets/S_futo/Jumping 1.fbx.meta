@@ -8,7 +8,7 @@ ModelImporter:
     second: jump.com
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: jump.com
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -38,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: jump.com
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
