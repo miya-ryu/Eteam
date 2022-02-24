@@ -56,11 +56,7 @@ public class Player : MonoBehaviour
         //アタックテスト
         if (Input.GetKey(KeyCode.A))
         {
-            if (Ground == true)
-            {
-                Debug.Log("押せている");
-                simpleAnimation.CrossFade("kick", 0.1f);
-            }
+            simpleAnimation.CrossFade("attack", 0.1f);
         }
 
         //アニメーションの再生
