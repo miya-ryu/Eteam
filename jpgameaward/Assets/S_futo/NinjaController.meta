@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:jpgameaward/Assets/S_futo/NinjaController.meta
 guid: 0ed3d88d741811c4a89d9a1ac169e674
+=======
+guid: 4c352081632e44b50bf48d8a6ff1ec76
+>>>>>>> e9a5abe721cf018a1ee50fd0416c61b406d2b3f2:jpgameaward/Assets/S_futo/NinjaController/Scenes.meta
+=======
+guid: 0ed3d88d741811c4a89d9a1ac169e674
+>>>>>>> e9a5abe721cf018a1ee50fd0416c61b406d2b3f2
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
