@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &255447118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -285,7 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5450b3f40ed1be34991a857b89e61628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1238507394}
+  inJumping: 0
+  Jumppower: 0
 --- !u!114 &460038964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1018,7 @@ PrefabInstance:
     - target: {fileID: 1974663806794766590, guid: 6715e34deb6c9bb47b9255c2ea02450e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 1974663806794766590, guid: 6715e34deb6c9bb47b9255c2ea02450e,
         type: 3}
@@ -1081,8 +1082,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6781821305211270118, guid: 6715e34deb6c9bb47b9255c2ea02450e,
         type: 3}
+      propertyPath: m_States.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781821305211270118, guid: 6715e34deb6c9bb47b9255c2ea02450e,
+        type: 3}
       propertyPath: m_AnimatePhysics
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781821305211270118, guid: 6715e34deb6c9bb47b9255c2ea02450e,
+        type: 3}
+      propertyPath: m_States.Array.data[4].clip
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: 98b548a3d162272429d1fa635b5d0a78,
+        type: 3}
+    - target: {fileID: 6781821305211270118, guid: 6715e34deb6c9bb47b9255c2ea02450e,
+        type: 3}
+      propertyPath: m_States.Array.data[4].name
+      value: attack
       objectReference: {fileID: 0}
     - target: {fileID: 8497564089936393604, guid: 6715e34deb6c9bb47b9255c2ea02450e,
         type: 3}
@@ -1557,7 +1574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5450b3f40ed1be34991a857b89e61628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  inJumping: 0
+  Jumppower: 0
 --- !u!54 &1684148641
 Rigidbody:
   m_ObjectHideFlags: 0
