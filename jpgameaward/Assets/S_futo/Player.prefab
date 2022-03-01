@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inJumping: 0
-  Jumppower: 1500
+  Jumppower: 700
 --- !u!1 &7419358476588483119
 GameObject:
   m_ObjectHideFlags: 0

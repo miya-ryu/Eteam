@@ -8,12 +8,12 @@ public class attack : MonoBehaviour
 
     void Start()
     {
-        //boxcol.enabled = false;
+        boxcol.enabled = false;
     }
 
     void Update()
     {
-        if(boxcol.enabled == false && Input.GetKey(KeyCode.Tab))
+        if(boxcol.enabled == false && Input.GetButton("B"))
         {
                 Debug.Log("押された");
                 boxcol.enabled = true;
