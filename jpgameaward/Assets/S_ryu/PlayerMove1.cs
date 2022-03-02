@@ -114,6 +114,6 @@ public class PlayerMove1 : MonoBehaviour
         {
             Ground = true;//  Groundedをtrueにする
             inJumping = false;
-        }
+        }            simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
     }
 }
