@@ -4,23 +4,57 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
-    public BoxCollider boxcol;
+    public MeshCollider meshcol;
+
+    //溜め攻撃の変数、フラグ
+    bool ChargeAttack = false;
+    int ChargeAttackCount;
+    int ChargeTime = 60;  //溜め時間
 
     void Start()
     {
-        boxcol.enabled = false;
+        meshcol.enabled = false;
     }
 
     void Update()
     {
-        if(boxcol.enabled == false && Input.GetButton("B"))
+        //溜め攻撃
+        if (Input.GetButtonUp("B"))
         {
-                Debug.Log("押された");
-                boxcol.enabled = true;
+            //押している時間が ChargeTime より多いとき
+            if (ChargeTime <= ChargeAttackCount)
+            {
+                ChargeAttackCount = 0;
+                ChargeAttack = true;
+            }
+        }
+        if (Input.GetButton("B"))
+        {
+            ChargeAttackCount++;
         }
         else
         {
-            boxcol.enabled = false;
+            ChargeAttackCount = 0;
         }
+
+        // meshcol が非表示の時
+        if (meshcol.enabled == false)
+        {
+            //溜め攻撃が true の時
+            if (ChargeAttack == true)
+            {
+                meshcol.enabled = true;
+                Invoke("Chargeflg", 0.8f);
+            }
+        }
+        else
+        {
+            meshcol.enabled = false;
+        }
+    }
+    //溜め攻撃フラグ
+    void Chargeflg()
+    {
+        ChargeAttack = false;
     }
 }

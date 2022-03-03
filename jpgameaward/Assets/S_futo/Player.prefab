@@ -230,8 +230,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5756146656530705223
-BoxCollider:
+--- !u!64 &2025393135559580945
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -240,9 +240,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 21.189476, y: 10.007969, z: 112.833015}
-  m_Center: {x: -1.8449193, y: -1.1883162, z: -10.892588}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: a9e8b0c84ce4b2749aca0e63a676e439, type: 3}
 --- !u!114 &1335223623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,12 +251,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295961821180268660}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d1de14bdb9e9249b31d60a2e335bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxcol: {fileID: 5756146656530705223}
+  meshcol: {fileID: 2025393135559580945}
 --- !u!1 &1474348032349268433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inJumping: 0
   Jumppower: 600
-  speed: 25
+  speed: 35
 --- !u!1 &7419358476588483119
 GameObject:
   m_ObjectHideFlags: 0

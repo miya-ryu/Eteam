@@ -1,4 +1,16 @@
-﻿using System.Collections;
+﻿//ボタン配置
+// joystick button 0 A
+// joystick button 1 B
+// joystick button 2 X
+// joystick button 3 Y
+// joystick button 4 LB
+// joystick button 5 RB
+// joystick button 6 BACK
+// joystick button 7 START
+// joystick button 8 L3
+// joystick button 9 R3
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +27,18 @@ public class PlayerMove1 : MonoBehaviour
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
 
+    //溜め攻撃の変数、フラグ
+    bool ChargeAttack = false;
+    int ChargeAttackCount;
+    int ChargeTime = 60;  //溜め時間
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
+
         //キャラクターが回転してしまわないように回転方向を固定する
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+
         //キャラクターのSimpleAnimationを取得
         simpleAnimation = this.GetComponent<SimpleAnimation>();
     }
@@ -27,24 +46,7 @@ public class PlayerMove1 : MonoBehaviour
     void Update()
     {
         //横移動とダッシュ
-        //float dx = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        //transform.position = new Vector3(transform.position.x + dx, transform.position.y);
         Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
-
-        if (Input.GetButton("X"))
-        {
-            //Debug.Log("このボタン");
-            // joystick button 0 A
-            // joystick button 1 B
-            // joystick button 2 X
-            // joystick button 3 Y
-            // joystick button 4 LB
-            // joystick button 5 RB
-            // joystick button 6 BACK
-            // joystick button 7 START
-            // joystick button 8 L3
-            // joystick button 9 R3
-        }
 
         //Aボタンでジャンプ
         if (Input.GetButton("A"))//  もし、Aボタンがおされたなら、
@@ -55,6 +57,25 @@ public class PlayerMove1 : MonoBehaviour
                 inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
             }
+        }
+
+        //溜め攻撃
+        if (Input.GetButtonUp("B"))
+        {
+            //押している時間が ChargeTime より多いとき
+            if(ChargeTime <= ChargeAttackCount)
+            {
+                ChargeAttackCount = 0;
+                ChargeAttack = true;
+            }
+        }
+        if (Input.GetButton("B"))
+        {
+            ChargeAttackCount++;
+        }
+        else
+        {
+            ChargeAttackCount = 0;
         }
 
         //アニメーションの再生(ダッシュ中)
@@ -69,19 +90,21 @@ public class PlayerMove1 : MonoBehaviour
             if (inJumping == true) //ジャンプ中のとき
             {
                 simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
-                //ジャンプしながらBボタンでアタック
-                if (Input.GetButton("B"))
+                //ジャンプしながら溜め攻撃でアタック
+                if (ChargeAttack == true)
                 {
                     simpleAnimation.CrossFade("attack", 0.1f);
+                    Invoke("Chargeflg", 0.8f);
                 }
             }
             else
             {
                 simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
-                //ダッシュしながらBボタンでアタック
-                if (Input.GetButton("B"))
+                //ダッシュしながら溜め攻撃でアタック
+                if (ChargeAttack == true)
                 {
                     simpleAnimation.CrossFade("attack", 0.1f);
+                    Invoke("Chargeflg", 0.8f);
                 }
             }
         }
@@ -90,16 +113,18 @@ public class PlayerMove1 : MonoBehaviour
         {
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
             //ジャンプしながらBボタンでアタック
-            if (Input.GetButton("B"))
+            if (ChargeAttack == true)
             {
                 simpleAnimation.CrossFade("attack", 0.1f);
+                Invoke("Chargeflg", 0.8f);
             }
         }
         else
         //Bボタンでアタック
-        if (Input.GetButton("B"))
+        if (ChargeAttack == true)
         {
             simpleAnimation.CrossFade("attack", 0.1f);
+            Invoke("Chargeflg", 0.8f);
         }
         else
         {
@@ -114,6 +139,12 @@ public class PlayerMove1 : MonoBehaviour
         {
             Ground = true;//  Groundedをtrueにする
             inJumping = false;
-        }            simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
+        }
+    }
+
+    //溜め攻撃フラグ
+    void Chargeflg()
+    {
+        ChargeAttack = false;
     }
 }
