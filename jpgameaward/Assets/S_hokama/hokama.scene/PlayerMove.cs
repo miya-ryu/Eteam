@@ -25,7 +25,7 @@ public class PlayerMove : MonoBehaviour
 
     bool ChargeAttack=false;
     int ChargeAttackCount;
-    int ChargeTime=150;  //溜め時間
+    int ChargeTime=120;  //溜め時間
 
     void Start()
     {
@@ -50,6 +50,7 @@ public class PlayerMove : MonoBehaviour
                 Ground = false;
                 inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                
             }
         }
         if (Input.GetButtonUp("B"))
@@ -81,7 +82,7 @@ public class PlayerMove : MonoBehaviour
                 simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
                 speed = 18f;
                 if (ChargeAttack == true)
-                {
+                {  
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
                 }
@@ -91,8 +92,7 @@ public class PlayerMove : MonoBehaviour
                 simpleAnimation.CrossFade("Run", 0.1f);         //普通移動アニメーションを再生
                 speed = 12f;
                 if (ChargeAttack == true)
-                {
-
+                { 
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
                 }
@@ -101,20 +101,24 @@ public class PlayerMove : MonoBehaviour
         else if (inJumping == true) //ジャンプ中のとき
         {
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
-        }
-        else
-        //アタックテスト
-        if (ChargeAttack == true)
-        {
-            transform.position += new Vector3(2, 0, 0) * Time.deltaTime*speed;
-            simpleAnimation.CrossFade("attack", 0.1f);
-            Invoke("Chargeflg",0.8f);
+            if (ChargeAttack == true)
+            {
+                simpleAnimation.CrossFade("attack", 0.1f);
+                Invoke("Chargeflg", 0.8f);
+            }
         }
         else
         {
-            simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
+            if (ChargeAttack == true)
+            { 
+                simpleAnimation.CrossFade("attack", 0.1f);
+                Invoke("Chargeflg", 0.8f);
+            }
+            else
+            {
+                simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
+            }
         }
-
     }
     ////地面との判定
     void OnCollisionEnter(Collision other)//  地面に触れた時の処理
