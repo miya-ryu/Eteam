@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 1295961819285901027}
   - component: {fileID: 5756146658364687222}
   - component: {fileID: 5756146658364687223}
-  - component: {fileID: 1821632091}
+  - component: {fileID: 725718051}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1312,7 +1312,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.26393557
   m_Center: {x: 0.0011026639, y: 0.15378085, z: 8.28379e-18}
---- !u!114 &1821632091
+--- !u!114 &725718051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1321,11 +1321,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7124065135379748840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5450b3f40ed1be34991a857b89e61628, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d3360321a3453547a21989ba3566b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inJumping: 0
-  Jumppower: 700
+  Jumppower: 600
+  speed: 25
 --- !u!1 &7419358476588483119
 GameObject:
   m_ObjectHideFlags: 0
