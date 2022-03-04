@@ -44,7 +44,7 @@ public class attack : MonoBehaviour
             if (ChargeAttack == true)
             {
                 meshcol.enabled = true;
-                Invoke("Chargeflg", 0.8f);
+                Invoke("Chargeflg", 0.6f);
             }
         }
         else
