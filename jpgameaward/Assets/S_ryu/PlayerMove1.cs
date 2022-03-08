@@ -18,12 +18,14 @@ public class PlayerMove1 : MonoBehaviour
 {
     //プレイヤーフラグ
     [SerializeField] public bool inJumping = false;
+    //重力
+    [SerializeField] private Vector3 localGravity;
 
     private Rigidbody rb; // Rigidbodyを使うための変数
     private bool Ground; // 地面に着地しているか判定する変数
     public float Jumppower; // ジャンプ力
     public float speed = 35f; //キャラクターの移動スピード
-    private float Jumpspeed = 15f;
+    public float Jumpspeed = 15f; //ジャンプ中の移動スピード
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
@@ -37,11 +39,23 @@ public class PlayerMove1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
 
+        rb.useGravity = false; //rigidbodyの重力を使わないようにする
+
         //キャラクターが回転してしまわないように回転方向を固定する
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         //キャラクターのSimpleAnimationを取得
         simpleAnimation = this.GetComponent<SimpleAnimation>();
+    }
+
+    private void FixedUpdate()
+    {
+        SetLocalGravity();
+    }
+
+    private void SetLocalGravity()
+    {
+        rb.AddForce(localGravity, ForceMode.Acceleration);
     }
 
     void Update()
@@ -50,7 +64,7 @@ public class PlayerMove1 : MonoBehaviour
         Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
 
         //Aボタンでジャンプ
-        if (Input.GetButton("A"))//  もし、Aボタンがおされたなら、
+        if (Input.GetButtonDown("A"))//  もし、Aボタンがおされたなら、
         {
             if (Ground == true)//  もし、Groundedがtrueなら、
             {
@@ -90,6 +104,7 @@ public class PlayerMove1 : MonoBehaviour
 
             if (inJumping == true) //ジャンプ中のとき
             {
+                speed = Jumpspeed;
                 simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
                 //ジャンプしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
@@ -100,6 +115,7 @@ public class PlayerMove1 : MonoBehaviour
             }
             else
             {
+                speed = 35f;
                 simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
