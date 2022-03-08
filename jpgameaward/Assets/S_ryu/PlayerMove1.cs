@@ -22,7 +22,8 @@ public class PlayerMove1 : MonoBehaviour
     private Rigidbody rb; // Rigidbodyを使うための変数
     private bool Ground; // 地面に着地しているか判定する変数
     public float Jumppower; // ジャンプ力
-    public float speed = 25f; //キャラクターの移動スピード
+    public float speed = 35f; //キャラクターの移動スピード
+    private float Jumpspeed = 15f;
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
@@ -45,7 +46,7 @@ public class PlayerMove1 : MonoBehaviour
 
     void Update()
     {
-        //横移動とダッシュ
+        //横移動
         Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
 
         //Aボタンでジャンプ
