@@ -26,7 +26,7 @@ public class Surinuke : MonoBehaviour
         if (other.gameObject.CompareTag("Ashiba"))
         {
             Debug.Log("当たっている");
-            GameObject child = transform.FindChild("Ashiba").gameObject;
+            GameObject child = transform.Find("Ashiba").gameObject;
             Collider collider = this.gameObject.GetComponentInChildren<BoxCollider>();
             collider.isTrigger = false;
         }
