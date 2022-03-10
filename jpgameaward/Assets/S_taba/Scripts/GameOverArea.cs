@@ -18,7 +18,8 @@ public class GameOverArea : MonoBehaviour
         if (other.gameObject.CompareTag("GameOverArea"))
         {
             Debug.Log("ステージから落ちた。");
-            this.transform.position = new Vector3(16.96f, 11.07f, -0.73f);
+            this.transform.position = new Vector3(-5.15f, 6.173f, 1.28f);
+            this.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
             //rb.isKinematic = true;
             //rb.velocity = Vector3.zero;

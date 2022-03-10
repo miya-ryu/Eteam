@@ -116,7 +116,10 @@ public class PlayerMove1 : MonoBehaviour
             else
             {
                 speed = 35f;
-                simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                if(Ground == true)
+                {
+                    simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                }
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
                 {
@@ -128,6 +131,7 @@ public class PlayerMove1 : MonoBehaviour
         //アニメーションの再生(止まっている時)
         else if (inJumping == true) //ジャンプしたとき
         {
+            speed = Jumpspeed;
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
             //ジャンプしながらBボタンでアタック
             if (ChargeAttack == true)
@@ -136,15 +140,15 @@ public class PlayerMove1 : MonoBehaviour
                 Invoke("Chargeflg", 0.8f);
             }
         }
-        else
         //Bボタンでアタック
-        if (ChargeAttack == true)
+        else if (ChargeAttack == true)
         {
             simpleAnimation.CrossFade("attack", 0.1f);
             Invoke("Chargeflg", 0.8f);
         }
         else
         {
+            speed = 35f;
             simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
         }
     }
