@@ -6,15 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/matayoshi/matayoshi2.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/S_hokama/hokama.scene/0Scene.unity
-    guid: d3271d85488a9834e9e8c7ccf685cab3
-  - enabled: 0
-    path: Assets/S_hokama/hokama.scene/1Scene.unity
-    guid: f530a84ec773fdd47bd85fccdf7e89c3
-  - enabled: 0
-    path: Assets/S_hokama/hokama.scene/2Scene.unity
-    guid: 0b6635f12ba74fd41af64b0f3de95d4a
+    path: Assets/SampleScene 1.unity
+    guid: 5717cd485c5726d418bd48d5818c5eeb
   m_configObjects: {}
