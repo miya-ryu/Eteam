@@ -1,41 +1,44 @@
-﻿using System.Collections;
+﻿//ボタン配置
+// joystick button 0 A
+// joystick button 1 B
+// joystick button 2 X
+// joystick button 3 Y
+// joystick button 4 LB
+// joystick button 5 RB
+// joystick button 6 BACK
+// joystick button 7 START
+// joystick button 8 L3
+// joystick button 9 R3
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    //キャラクターの操作状態を管理するフラグ
-    [SerializeField] public bool onGround = true;
+    //プレイヤーフラグ
     [SerializeField] public bool inJumping = false;
 
-    //rigidbodyオブジェクト格納用変数
-    Rigidbody rb;
+    private Rigidbody rb; // Rigidbodyを使うための変数
+    private bool Ground; // 地面に着地しているか判定する変数
+    public float Jumppower; // ジャンプ力
+    public float speed = 25f; //キャラクターの移動スピード
 
-    //移動速度の定義
-    float speed = 6f;
-
-    //ダッシュ速度の定義
-    float sprintspeed = 9f;
-
-    //方向転換速度の定義
-    float angleSpeed = 200;
-
-    //移動の係数格納用変数
-    float v;
-    float h;
+    //public GameObject object1;
+    //public GameObject object2;
+    //public GameObject object3;
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
 
-    //Sword
-    GameObject Sword_MeshObj;
+    //溜め攻撃の変数、フラグ
+    bool ChargeAttack = false;
+    int ChargeAttackCount;
+    int ChargeTime = 60;  //溜め時間
 
     void Start()
     {
-        //キャラクターのrigidbodyの取得
-        rb = this.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
 
         //キャラクターが回転してしまわないように回転方向を固定する
         rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -44,118 +47,108 @@ public class PlayerController2 : MonoBehaviour
         simpleAnimation = this.GetComponent<SimpleAnimation>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Shift+上下キーでダッシュ、上下キーで通常移動、それ以外は停止
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift))
-            v = Time.deltaTime * sprintspeed;
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift))
-            v = -Time.deltaTime * sprintspeed;
-        else if (Input.GetKey(KeyCode.RightArrow))
-            v = Time.deltaTime * speed;
-        else if (Input.GetKey(KeyCode.LeftArrow))
-            v = -Time.deltaTime * speed;
-        else
-            v = 0;
-        
-        //移動の実行
-        if (!inJumping)//空中での移動を禁止
+        //横移動とダッシュ
+        Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
+
+        //Aボタンでジャンプ
+        if (Input.GetButton("A"))//  もし、Aボタンがおされたなら、
         {
-            transform.position += transform.forward * v;
-        }
-        //スペースボタンでジャンプする
-        if (onGround)
-        {
-            if (Input.GetKey(KeyCode.Space))
+            if (Ground == true)//  もし、Groundedがtrueなら、
             {
-                //ジャンプさせるため上方向に力を発生
-                rb.AddForce(transform.up * 8, ForceMode.Impulse);
-                //ジャンプ中は地面との接触判定をfalseにする
-                onGround = false;
+                Ground = false;
                 inJumping = true;
-
-                //前後キーを押しながらジャンプしたときは前後方向の力も発生
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    rb.AddForce(transform.forward * 6f, ForceMode.Impulse);
-                }
-                else if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    rb.AddForce(transform.forward * -3f, ForceMode.Impulse);
-                }
+                rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
             }
         }
 
-        //左右キーで方向転換
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //    h = Time.deltaTime * angleSpeed;
-        //else if (Input.GetKey(KeyCode.LeftArrow))
-        //    h = -Time.deltaTime * angleSpeed;
-        //else
-        //    h = 0;
-
-        //方向転換動作の実行
-        transform.Rotate(Vector3.up * h);
-
-        //前後方向キーを押したとき
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        //溜め攻撃
+        if (Input.GetButtonUp("B"))
         {
-            //ジャンプ中のとき
-            if (inJumping)
+            //押している時間が ChargeTime より多いとき
+            if (ChargeTime <= ChargeAttackCount)
             {
-                //ジャンプアニメーションを再生
-                simpleAnimation.CrossFade("Jump", 0.1f);
+                ChargeAttackCount = 0;
+                ChargeAttack = true;
             }
-            //ダッシュキー押下時
-            else if (Input.GetKey(KeyCode.LeftShift))
-                //ダッシュアニメーションを再生
-                simpleAnimation.CrossFade("Sprint", 0.1f);
+        }
+        if (Input.GetButton("B"))
+        {
+            ChargeAttackCount++;
+        }
+        else
+        {
+            ChargeAttackCount = 0;
+        }
+
+        //アニメーションの再生(ダッシュ中)
+        if (pos.magnitude > 0.1) //posからベクトルの長さを取得
+        {
+            //posの方向に回転
+            transform.rotation = Quaternion.LookRotation(pos);
+
+            //現在のキャラクターの位置を基準に移動
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+
+            if (inJumping == true) //ジャンプ中のとき
+            {
+                simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
+                //ジャンプしながら溜め攻撃でアタック
+                if (ChargeAttack == true)
+                {
+                    simpleAnimation.CrossFade("attack", 0.1f);
+                    Invoke("Chargeflg", 0.8f);
+                }
+            }
             else
             {
-                //ジャンプ中
-                if (inJumping)
-                    //ジャンプアニメーションを再生
-                    simpleAnimation.CrossFade("Jump", 0.1f);
-                else
-                    //移動アニメーションを再生
-                    simpleAnimation.CrossFade("Run", 0.1f);
-            }
-            //攻撃
-            if (Input.GetKey(KeyCode.A))
-            {
-                simpleAnimation.CrossFade("Attack1", 0.1f);
+                simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                //ダッシュしながら溜め攻撃でアタック
+                if (ChargeAttack == true)
+                {
+                    simpleAnimation.CrossFade("attack", 0.1f);
+                    Invoke("Chargeflg", 0.8f);
+                }
             }
         }
-
-        //スペースキー押下時
-        else if (Input.GetKeyDown(KeyCode.Space))
+        //アニメーションの再生(止まっている時)
+        else if (inJumping == true) //ジャンプしたとき
         {
-            //ジャンプアニメーションを再生
-            simpleAnimation.CrossFade("Jump", 0.1f);
-            inJumping = true;
-        }
-        else//それ以外
-        {
-            if (inJumping) { }//ジャンプ中はそのまま
-            else//それ以外
+            simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
+            //ジャンプしながらBボタンでアタック
+            if (ChargeAttack == true)
             {
-                //デフォルトアニメーションを再生
-                simpleAnimation.Play("Default");
+                simpleAnimation.CrossFade("attack", 0.1f);
+                Invoke("Chargeflg", 0.8f);
             }
         }
-
+        else
+        //Bボタンでアタック
+        if (ChargeAttack == true)
+        {
+            simpleAnimation.CrossFade("attack", 0.1f);
+            Invoke("Chargeflg", 0.8f);
+        }
+        else
+        {
+            simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
+        }
     }
 
-    //地面に接触したときにはonGroundをtrue、injumpingをfalseにする
-    void OnCollisionEnter(Collision col)
+    //地面との判定
+    void OnCollisionEnter(Collision other)//  地面に触れた時の処理
     {
-        if (col.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
         {
-            onGround = true;
+            Ground = true;//  Groundedをtrueにする
             inJumping = false;
-            simpleAnimation.Stop("Jump");
-            simpleAnimation.Play("Default");
         }
+    }
+
+    //溜め攻撃フラグ
+    void Chargeflg()
+    {
+        ChargeAttack = false;
     }
 }

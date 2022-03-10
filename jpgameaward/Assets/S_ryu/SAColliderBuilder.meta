@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:jpgameaward/Assets/S_ryu/SAColliderBuilder.meta
 guid: 74bc0f8b239f98347b2e16697b266422
+=======
+guid: af624e3a460217345ad0e8e3b2c2fcba
+>>>>>>> origin/matayoshi3:jpgameaward/Assets/matayoshi/Prefab.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
