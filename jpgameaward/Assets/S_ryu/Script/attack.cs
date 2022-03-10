@@ -9,7 +9,7 @@ public class attack : MonoBehaviour
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
-    int ChargeTime = 60;  //溜め時間
+    int ChargeTime = 30;  //溜め時間
 
     void Start()
     {

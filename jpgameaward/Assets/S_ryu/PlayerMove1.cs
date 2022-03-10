@@ -16,6 +16,12 @@ using UnityEngine;
 
 public class PlayerMove1 : MonoBehaviour
 {
+    //突進攻撃
+    private float playerPosX;
+    private float playerPosY;
+    private float playerPosZ;
+    private float playreRot;
+
     //プレイヤーフラグ
     [SerializeField] public bool inJumping = false;
     //重力
@@ -33,7 +39,7 @@ public class PlayerMove1 : MonoBehaviour
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
-    int ChargeTime = 60;  //溜め時間
+    int ChargeTime = 30;  //溜め時間
 
     void Start()
     {
@@ -80,6 +86,12 @@ public class PlayerMove1 : MonoBehaviour
             //押している時間が ChargeTime より多いとき
             if(ChargeTime <= ChargeAttackCount)
             {
+                //突進攻撃
+                this.playerPosX = transform.position.x;　　//座標を取得
+                this.playerPosY = transform.position.y;　　//座標を取得
+                this.playerPosZ = transform.position.z;　　//座標を取得
+                this.playreRot = transform.rotation.y;
+
                 ChargeAttackCount = 0;
                 ChargeAttack = true;
             }
@@ -109,6 +121,7 @@ public class PlayerMove1 : MonoBehaviour
                 //ジャンプしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
                 {
+                    AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
                 }
@@ -123,6 +136,7 @@ public class PlayerMove1 : MonoBehaviour
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
                 {
+                    AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
                 }
@@ -136,6 +150,7 @@ public class PlayerMove1 : MonoBehaviour
             //ジャンプしながらBボタンでアタック
             if (ChargeAttack == true)
             {
+                AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
                 Invoke("Chargeflg", 0.8f);
             }
@@ -143,6 +158,7 @@ public class PlayerMove1 : MonoBehaviour
         //Bボタンでアタック
         else if (ChargeAttack == true)
         {
+            AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
             Invoke("Chargeflg", 0.8f);
         }
@@ -167,5 +183,27 @@ public class PlayerMove1 : MonoBehaviour
     void Chargeflg()
     {
         ChargeAttack = false;
+    }
+
+    void AttackMove()  //攻撃した時の移動
+    {
+        if (0 < playreRot)
+        {
+            rb.velocity = new Vector3(120, 0, 0);  //移動スピード
+            if (transform.position.x < playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+            }
+        }
+        if (0 > playreRot)
+        {
+
+            rb.velocity = new Vector3(-120, 0, 0);  //移動スピード
+            if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+
+            }
+        }
     }
 }
