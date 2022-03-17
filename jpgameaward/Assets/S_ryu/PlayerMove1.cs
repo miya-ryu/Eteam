@@ -190,7 +190,7 @@ public class PlayerMove1 : MonoBehaviour
         if (0 < playreRot)
         {
             rb.velocity = new Vector3(120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
             }
