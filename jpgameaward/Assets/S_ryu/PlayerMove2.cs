@@ -21,8 +21,6 @@ public class PlayerMove2 : MonoBehaviour
 
     //突進攻撃
     private float playerPosX;
-    private float playerPosY;
-    private float playerPosZ;
     private float playreRot;
 
     //重力
@@ -106,8 +104,6 @@ public class PlayerMove2 : MonoBehaviour
             {
                 //突進攻撃
                 this.playerPosX = transform.position.x;　　//座標を取得
-                this.playerPosY = transform.position.y;　　//座標を取得
-                this.playerPosZ = transform.position.z;　　//座標を取得
                 this.playreRot = transform.rotation.y;
 
                 ChargeAttackCount = 0;
@@ -141,7 +137,7 @@ public class PlayerMove2 : MonoBehaviour
                 {
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
-                    Invoke("Chargeflg", 0.8f);
+                    //Invoke("Chargeflg", 0.8f);
                 }
             }
             else
@@ -159,7 +155,7 @@ public class PlayerMove2 : MonoBehaviour
                 {
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
-                    Invoke("Chargeflg", 0.8f);
+                    //Invoke("Chargeflg", 0.8f);
 
                     //SE
                     sounds.SE3();//攻撃音を再生
@@ -176,7 +172,7 @@ public class PlayerMove2 : MonoBehaviour
             {
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
-                Invoke("Chargeflg", 0.8f);
+                //Invoke("Chargeflg", 0.8f);
 
                 //SE
                 sounds.SE4();//攻撃音を再生
@@ -187,7 +183,7 @@ public class PlayerMove2 : MonoBehaviour
         {
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
-            Invoke("Chargeflg", 0.8f);
+            //Invoke("Chargeflg", 0.8f);
 
             //SE
             sounds.SE5();//攻撃音を再生
@@ -203,6 +199,7 @@ public class PlayerMove2 : MonoBehaviour
     void Chargeflg()
     {
         ChargeAttack = false;
+        rb.velocity = new Vector3(0, 0, 0);
     }
 
     void AttackMove()  //攻撃した時の移動
@@ -210,9 +207,10 @@ public class PlayerMove2 : MonoBehaviour
         if (0 < playreRot)
         {
             rb.velocity = new Vector3(120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
+                Chargeflg();
             }
         }
         if (0 > playreRot)
@@ -222,6 +220,7 @@ public class PlayerMove2 : MonoBehaviour
             if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
+                Chargeflg();
 
             }
         }
