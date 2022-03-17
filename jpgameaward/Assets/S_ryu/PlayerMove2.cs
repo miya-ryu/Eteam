@@ -16,6 +16,9 @@ using UnityEngine;
 
 public class PlayerMove2 : MonoBehaviour
 {
+    //SE
+    public SOUNDS sounds;
+
     //突進攻撃
     private float playerPosX;
     private float playerPosY;
@@ -89,6 +92,9 @@ public class PlayerMove2 : MonoBehaviour
             {
                 Ground = false;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+
+                //SE
+                sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
@@ -144,6 +150,9 @@ public class PlayerMove2 : MonoBehaviour
                 if(Ground == true)
                 {
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+
+                    //SE
+                    sounds.SE2();   //ダッシュ音を再生
                 }
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
@@ -151,6 +160,9 @@ public class PlayerMove2 : MonoBehaviour
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
+
+                    //SE
+                    sounds.SE3();//攻撃音を再生
                 }
             }
         }
@@ -165,6 +177,9 @@ public class PlayerMove2 : MonoBehaviour
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
                 Invoke("Chargeflg", 0.8f);
+
+                //SE
+                sounds.SE4();//攻撃音を再生
             }
         }
         //Bボタンでアタック
@@ -173,6 +188,9 @@ public class PlayerMove2 : MonoBehaviour
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
             Invoke("Chargeflg", 0.8f);
+
+            //SE
+            sounds.SE5();//攻撃音を再生
         }
         else
         {
