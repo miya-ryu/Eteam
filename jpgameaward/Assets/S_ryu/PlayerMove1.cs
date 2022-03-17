@@ -16,6 +16,9 @@ using UnityEngine;
 
 public class PlayerMove1 : MonoBehaviour
 {
+    public SOUNDS sounds;
+
+
     //突進攻撃
     private float playerPosX;
     private float playerPosY;
@@ -43,6 +46,7 @@ public class PlayerMove1 : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
 
         rb.useGravity = false; //rigidbodyの重力を使わないようにする
@@ -77,6 +81,7 @@ public class PlayerMove1 : MonoBehaviour
                 Ground = false;
                 inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
@@ -132,6 +137,7 @@ public class PlayerMove1 : MonoBehaviour
                 if(Ground == true)
                 {
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                    //sounds.SE2();
                 }
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
@@ -139,6 +145,7 @@ public class PlayerMove1 : MonoBehaviour
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
+                    sounds.SE3();//攻撃音を再生
                 }
             }
         }
@@ -153,6 +160,7 @@ public class PlayerMove1 : MonoBehaviour
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
                 Invoke("Chargeflg", 0.8f);
+                sounds.SE4();//攻撃音を再生
             }
         }
         //Bボタンでアタック
@@ -161,6 +169,7 @@ public class PlayerMove1 : MonoBehaviour
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
             Invoke("Chargeflg", 0.8f);
+            sounds.SE5();//攻撃音を再生
         }
         else
         {
@@ -176,6 +185,7 @@ public class PlayerMove1 : MonoBehaviour
         {
             Ground = true;//  Groundedをtrueにする
             inJumping = false;
+            sounds.SE2();   //ダッシュ音を再生
         }
     }
 
