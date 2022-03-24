@@ -638,6 +638,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1520258141, guid: e075989609771284387e18fab40d0339, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6090725583964661243, guid: e075989609771284387e18fab40d0339,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1204,8 +1208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5450b3f40ed1be34991a857b89e61628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inJumping: 0
+  sounds: {fileID: 0}
   localGravity: {x: 0, y: -50, z: 0}
+  Ground: 0
   Jumppower: 3000
   speed: 35
   Jumpspeed: 17
@@ -1516,8 +1521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5450b3f40ed1be34991a857b89e61628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inJumping: 0
+  sounds: {fileID: 0}
   localGravity: {x: 0, y: 0, z: 0}
+  Ground: 0
   Jumppower: 0
   speed: 25
   Jumpspeed: 15
