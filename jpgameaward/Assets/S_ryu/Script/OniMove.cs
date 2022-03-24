@@ -21,9 +21,6 @@ public class OniMove : MonoBehaviour
     [SerializeField] float quitRange = 5f;
     [SerializeField] bool tracking = false;
 
-    //SimpleAnimation変数
-    SimpleAnimation simpleAnimation;
-
     void Start()
     {
         // NavMeshAgentを保持しておく
@@ -33,9 +30,6 @@ public class OniMove : MonoBehaviour
 
         //追跡したいオブジェクトの名前を入れる
         player = GameObject.Find("Player");
-
-        //キャラクターのSimpleAnimationを取得
-        simpleAnimation = this.GetComponent<SimpleAnimation>();
     }
 
     void GotoNextPoint()
@@ -57,13 +51,11 @@ public class OniMove : MonoBehaviour
         playerPos = player.transform.position;
         distance = Vector3.Distance(this.transform.position, playerPos);
 
-
         if (tracking)
         {
             //追跡の時、quitRangeより距離が離れたら中止
             if (distance > quitRange)
             {
-                simpleAnimation.CrossFade("Walk", 0.1f);
                 tracking = false;
             }
 
@@ -75,7 +67,6 @@ public class OniMove : MonoBehaviour
             //PlayerがtrackingRangeより近づいたら追跡開始
             if (distance < trackingRange)
             {
-                simpleAnimation.CrossFade("Walk", 0.1f);
                 tracking = true;
             }
 
@@ -84,7 +75,6 @@ public class OniMove : MonoBehaviour
             // 次の目標地点を選択します
             if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
             {
-                simpleAnimation.CrossFade("Walk", 0.1f);
                 GotoNextPoint();
             }
         }
