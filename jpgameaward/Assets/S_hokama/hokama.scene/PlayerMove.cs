@@ -1,5 +1,4 @@
-﻿
-//ボタン配置
+﻿//ボタン配置
 // joystick button 0 A
 // joystick button 1 B
 // joystick button 2 X
@@ -17,20 +16,23 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    //SE
+    public SOUNDS sounds;
+
     //突進攻撃
     private float playerPosX;
     private float playreRot;
 
-    //プレイヤーフラグ
-    [SerializeField] public bool inJumping = false;
     //重力
     [SerializeField] private Vector3 localGravity;
+    // 地面に着地しているか判断するフラグ
+    [SerializeField] private bool Ground;
 
-    private Rigidbody rb; // Rigidbodyを使うための変数
-    private bool Ground; // 地面に着地しているか判定する変数
-    public float Jumppower; // ジャンプ力
-    public float speed = 35f; //キャラクターの移動スピード
+    private Rigidbody rb;         // Rigidbodyを使うための変数
+    public float Jumppower;       // ジャンプ力
+    public float speed = 35f;     //キャラクターの移動スピード
     public float Jumpspeed = 15f; //ジャンプ中の移動スピード
+    float dx;                     
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
@@ -38,13 +40,18 @@ public class PlayerMove : MonoBehaviour
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
-    int ChargeTime = 30;  //溜め時間
-    
+    int ChargeTime = 30;       //溜め時間
+   
+    //地面との接触判定
+    private Ray ray;               //飛ばすレイ
+    private float distance = 1.2f; //レイを飛ばす距離
+    private RaycastHit rayhit;     //レイが当たった時の情報
+    private Vector3 rayPosition;   //レイを発射する位置
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
-       
+
         rb.useGravity = false; //rigidbodyの重力を使わないようにする
 
         //キャラクターが回転してしまわないように回転方向を固定する
@@ -54,11 +61,11 @@ public class PlayerMove : MonoBehaviour
         simpleAnimation = this.GetComponent<SimpleAnimation>();
     }
 
+    //重力
     private void FixedUpdate()
     {
         SetLocalGravity();
     }
-
     private void SetLocalGravity()
     {
         rb.AddForce(localGravity, ForceMode.Acceleration);
@@ -66,47 +73,57 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        //レイを発射する位置
+        rayPosition = transform.position + new Vector3(0, 0.5f, 0);
+        //レイを下に飛ばす
+        ray = new Ray(rayPosition, Vector3.down);
+        Ground = Physics.Raycast(ray, distance);
+        //レイを赤色で表示させる
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+
+        if (ChargeAttack == false)  //攻撃してない間だけ移動できる
+        {
+             dx = Input.GetAxis("Horizontal");
+        }
         //横移動
-        Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
+        Vector3 pos = new Vector3( dx , 0);
+            
 
         //Aボタンでジャンプ
-        if (Input.GetButtonDown("A"))//  もし、Aボタンがおされたなら、
+        if (Input.GetButtonDown("A"))// Aボタンが押されたとき
         {
-            if (Ground == true)//  もし、Groundedがtrueなら、
+            if (Ground == true)
             {
                 Ground = false;
-                inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+
+                //SE
+                sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
+        //溜め攻撃
+        if (Input.GetButtonUp("B"))
+        {
+            //押している時間が ChargeTime より多いとき
+            if (ChargeTime <= ChargeAttackCount)
+            {
+                //突進攻撃
+                this.playerPosX = transform.position.x;　　//座標を取得
+                this.playreRot = transform.rotation.y;
 
-        
-        
-            //溜め攻撃
-            if (Input.GetButtonUp("B"))
-            {
-                //押している時間が ChargeTime より多いとき
-                if (ChargeTime <= ChargeAttackCount)
-                {
-                    //突進攻撃
-                    this.playerPosX = transform.position.x;  //座標を取得
-                    this.playreRot = transform.rotation.y;
-                
                 ChargeAttackCount = 0;
-                    ChargeAttack = true;
-                }
+                ChargeAttack = true;
             }
-            if (Input.GetButton("B"))
-            {
-                ChargeAttackCount++;
-            }
-            else
-            {
-                ChargeAttackCount = 0;
-            }
-        
-
+        }
+        if (Input.GetButton("B"))
+        {
+            ChargeAttackCount++;
+        }
+        else
+        {
+            ChargeAttackCount = 0;
+        }
 
         //アニメーションの再生(ダッシュ中)
         if (pos.magnitude > 0.1) //posからベクトルの長さを取得
@@ -117,7 +134,7 @@ public class PlayerMove : MonoBehaviour
             //現在のキャラクターの位置を基準に移動
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
-            if (inJumping == true) //ジャンプ中のとき
+            if (Ground == false) //ジャンプ中のとき
             {
                 speed = Jumpspeed;
                 simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
@@ -126,27 +143,34 @@ public class PlayerMove : MonoBehaviour
                 {
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
-                   // Invoke("Chargeflg", 0.8f);
+                    
                 }
             }
             else
             {
-                
+                speed = 35;
                 if (Ground == true)
                 {
+                    //ダッシュしながら溜め攻撃でアタック
+                    if (ChargeAttack == true)
+                    {
+                        AttackMove();
+                        simpleAnimation.CrossFade("attack", 0.1f);
+
+
+                        //SE
+                        sounds.SE3();//攻撃音を再生
+                    }
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                    
+                    //SE
+                    sounds.SE2();   //ダッシュ音を再生
                 }
-                //ダッシュしながら溜め攻撃でアタック
-                if (ChargeAttack == true)
-                {
-                    AttackMove();
-                    simpleAnimation.CrossFade("attack", 0.1f);
-                    //Invoke("Chargeflg", 0.8f);
-                }
+                
             }
         }
         //アニメーションの再生(止まっている時)
-        else if (inJumping == true) //ジャンプしたとき
+        else if (Ground == false) //ジャンプしたとき
         {
             speed = Jumpspeed;
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
@@ -155,70 +179,60 @@ public class PlayerMove : MonoBehaviour
             {
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
-                //Invoke("Chargeflg", 0.8f);
+                
+
+                //SE
+                sounds.SE4();//攻撃音を再生
             }
         }
         //Bボタンでアタック
         else if (ChargeAttack == true)
         {
-            simpleAnimation.CrossFade("attack",0.1f);
             AttackMove();
+            simpleAnimation.Play("attack");
             
-            //Invoke("Chargeflg", 0.8f);
-            
+
+            //SE
+            sounds.SE5();//攻撃音を再生
         }
         else
         {
-            
+            speed = 35;
             simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
         }
     }
 
 
-    //地面との判定
-    void OnCollisionEnter(Collision other)//  地面に触れた時の処理
-    {
-        if (other.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
-        {
-            Ground = true;//  Groundedをtrueにする
-            inJumping = false;
-        }
-    }
 
+    void attackmove0()
+    {
+        Chargeflg();
+    }
 
     //溜め攻撃フラグ
     void Chargeflg()
     {
         ChargeAttack = false;
-        rb.velocity = new Vector3(0,0,0);
-        
+        rb.velocity = new Vector3(0, 0, 0);
     }
-
 
     void AttackMove()  //攻撃した時の移動
     {
         if (0 < playreRot)
         {
-            
             rb.velocity = new Vector3(120, 0, 0);  //移動スピード
-            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より15以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
-                Chargeflg();
-
-
             }
         }
         if (0 > playreRot)
-        {
-
+        { 
             rb.velocity = new Vector3(-120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より15以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
-                Chargeflg();
             }
         }
-
-    }
+    }      
 }
