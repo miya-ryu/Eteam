@@ -32,6 +32,7 @@ public class PlayerMove2 : MonoBehaviour
     public float Jumppower;       // ジャンプ力
     public float speed = 35f;     //キャラクターの移動スピード
     public float Jumpspeed = 15f; //ジャンプ中の移動スピード
+    float dx;
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
@@ -80,8 +81,12 @@ public class PlayerMove2 : MonoBehaviour
         //レイを赤色で表示させる
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
+        if(ChargeAttack == false)  //攻撃してない間だけ移動できる
+        {
+            dx = Input.GetAxis("Horizontal");
+        }
         //横移動
-        Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
+        Vector3 pos = new Vector3(dx, 0);
 
         //Aボタンでジャンプ
         if (Input.GetButtonDown("A"))// Aボタンが押されたとき
@@ -92,7 +97,7 @@ public class PlayerMove2 : MonoBehaviour
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
 
                 //SE
-                sounds.SE1(); //音(sound1)を鳴らす
+                //sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
@@ -137,7 +142,6 @@ public class PlayerMove2 : MonoBehaviour
                 {
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
-                    //Invoke("Chargeflg", 0.8f);
                 }
             }
             else
@@ -145,20 +149,19 @@ public class PlayerMove2 : MonoBehaviour
                 speed = 35f;
                 if(Ground == true)
                 {
+                    //ダッシュしながら溜め攻撃でアタック
+                    if (ChargeAttack == true)
+                    {
+                        AttackMove();
+                        simpleAnimation.CrossFade("attack", 0.1f);
+
+                        //SE
+                        //sounds.SE3();//攻撃音を再生
+                    }
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
 
                     //SE
-                    sounds.SE2();   //ダッシュ音を再生
-                }
-                //ダッシュしながら溜め攻撃でアタック
-                if (ChargeAttack == true)
-                {
-                    AttackMove();
-                    simpleAnimation.CrossFade("attack", 0.1f);
-                    //Invoke("Chargeflg", 0.8f);
-
-                    //SE
-                    sounds.SE3();//攻撃音を再生
+                    //sounds.SE2();   //ダッシュ音を再生
                 }
             }
         }
@@ -172,10 +175,9 @@ public class PlayerMove2 : MonoBehaviour
             {
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
-                //Invoke("Chargeflg", 0.8f);
 
                 //SE
-                sounds.SE4();//攻撃音を再生
+                //sounds.SE4();//攻撃音を再生
             }
         }
         //Bボタンでアタック
@@ -183,16 +185,20 @@ public class PlayerMove2 : MonoBehaviour
         {
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
-            //Invoke("Chargeflg", 0.8f);
 
             //SE
-            sounds.SE5();//攻撃音を再生
+            //sounds.SE5();//攻撃音を再生
         }
         else
         {
             speed = 35f;
             simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
         }
+    }
+
+    void attackmove0()
+    {
+        Chargeflg();
     }
 
     //溜め攻撃フラグ
@@ -210,7 +216,6 @@ public class PlayerMove2 : MonoBehaviour
             if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
-                Chargeflg();
             }
         }
         if (0 > playreRot)
@@ -220,8 +225,6 @@ public class PlayerMove2 : MonoBehaviour
             if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
-                Chargeflg();
-
             }
         }
     }
