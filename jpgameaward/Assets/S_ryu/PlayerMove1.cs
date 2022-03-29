@@ -16,6 +16,9 @@ using UnityEngine;
 
 public class PlayerMove1 : MonoBehaviour
 {
+    
+
+
     //突進攻撃
     private float playerPosX;
     private float playerPosY;
@@ -45,6 +48,7 @@ public class PlayerMove1 : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
 
         rb.useGravity = false; //rigidbodyの重力を使わないようにする
@@ -79,6 +83,7 @@ public class PlayerMove1 : MonoBehaviour
                 Ground = false;
                 inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                
             }
         }
 
@@ -134,6 +139,7 @@ public class PlayerMove1 : MonoBehaviour
                 if(Ground == true)
                 {
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                    
                 }
                 //ダッシュしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
@@ -141,6 +147,7 @@ public class PlayerMove1 : MonoBehaviour
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
                     Invoke("Chargeflg", 0.8f);
+                    
                 }
             }
         }
@@ -155,6 +162,7 @@ public class PlayerMove1 : MonoBehaviour
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
                 Invoke("Chargeflg", 0.8f);
+                
             }
         }
         //Bボタンでアタック
@@ -163,6 +171,7 @@ public class PlayerMove1 : MonoBehaviour
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
             Invoke("Chargeflg", 0.8f);
+            
         }
         else
         {
@@ -178,6 +187,7 @@ public class PlayerMove1 : MonoBehaviour
         {
             Ground = true;//  Groundedをtrueにする
             inJumping = false;
+            
         }
     }
 
@@ -192,7 +202,7 @@ public class PlayerMove1 : MonoBehaviour
         if (0 < playreRot)
         {
             rb.velocity = new Vector3(120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
             }

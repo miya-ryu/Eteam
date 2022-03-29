@@ -1,140 +1,4 @@
-﻿//// joystick button 0 A
-//// joystick button 1 B
-//// joystick button 2 X
-//// joystick button 3 Y
-//// joystick button 4 LB
-//// joystick button 5 RB
-//// joystick button 6 BACK
-//// joystick button 7 START
-//// joystick button 8 L3
-//// joystick button 9 R3
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//public class PlayerMove : MonoBehaviour
-//{
-//    //プレイヤーフラグ
-//    [SerializeField] public bool inJumping = false;
-//    private Rigidbody rb; // Rigidbodyを使うための変数
-//    private bool Ground; // 地面に着地しているか判定する変数
-//    public float Jumppower; // ジャンプ力
-//    float speed = 18f;
-//    //SimpleAnimation変数
-//    SimpleAnimation simpleAnimation;
-
-//    bool ChargeAttack=false;
-//    int ChargeAttackCount;
-//    int ChargeTime=120;  //溜め時間
-
-//    void Start()
-//    {
-//        rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
-//        //キャラクターが回転してしまわないように回転方向を固定する
-//        rb.constraints = RigidbodyConstraints.FreezeRotation;
-//        //キャラクターのSimpleAnimationを取得
-//        simpleAnimation = this.GetComponent<SimpleAnimation>();
-//    }
-//    void Update()
-//    {
-//        //横移動とダッシュ
-//        float dx = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-//        transform.position = new Vector3(transform.position.x + dx, transform.position.y);
-
-
-
-//        if (Input.GetButton("A"))//  もし、Aボタンがおされたなら、
-//        {
-//            if (Ground == true)//  もし、Groundedがtrueなら、
-//            {
-//                Ground = false;
-//                inJumping = true;
-//                rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
-
-//            }
-//        }
-//        if (Input.GetButtonUp("B"))
-//        {
-//            if (ChargeTime <= ChargeAttackCount)　//押してる時間がChargeTimeより多い時
-//            {
-//                ChargeAttackCount = 0;
-//                ChargeAttack = true;
-//            }
-//        }
-//        if(Input.GetButton("B"))
-//        {
-//            ChargeAttackCount++;
-//        }
-//        else
-//        {
-//            ChargeAttackCount = 0;
-//        }
-//            //アニメーションの再生
-//            if (dx != 0)
-//        {
-//            if (inJumping == true) //ジャンプ中のとき
-//            {
-//                simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
-//            }
-//            //ダッシュキー押下時
-//            else if (Input.GetButton("X"))
-//            {
-//                simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
-//                speed = 18f;
-//                if (ChargeAttack == true)
-//                {  
-//                    simpleAnimation.CrossFade("attack", 0.1f);
-//                    Invoke("Chargeflg", 0.8f);
-//                }
-//            }
-//            else
-//            {
-//                simpleAnimation.CrossFade("Run", 0.1f);         //普通移動アニメーションを再生
-//                speed = 12f;
-//                if (ChargeAttack == true)
-//                { 
-//                    simpleAnimation.CrossFade("attack", 0.1f);
-//                    Invoke("Chargeflg", 0.8f);
-//                }
-//            }
-//        }
-//        else if (inJumping == true) //ジャンプ中のとき
-//        {
-//            simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
-//            if (ChargeAttack == true)
-//            {
-//                simpleAnimation.CrossFade("attack", 0.1f);
-//                Invoke("Chargeflg", 0.8f);
-//            }
-//        }
-//        else
-//        {
-//            if (ChargeAttack == true)
-//            { 
-//                simpleAnimation.CrossFade("attack", 0.1f);
-//                Invoke("Chargeflg", 0.8f);
-//            }
-//            else
-//            {
-//                simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
-//            }
-//        }
-//    }
-//    ////地面との判定
-//    void OnCollisionEnter(Collision other)//  地面に触れた時の処理
-//    {
-//        if (other.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
-//        {
-//            Ground = true;//  Groundedをtrueにする
-//            inJumping = false;
-//        }
-//    }
-//    void Chargeflg()
-//    {
-//        ChargeAttack = false;
-//    }
-//}
-//ボタン配置
+﻿//ボタン配置
 // joystick button 0 A
 // joystick button 1 B
 // joystick button 2 X
@@ -152,19 +16,23 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    //SE
+    public SOUNDS sounds;
 
+    //突進攻撃
     private float playerPosX;
-    private float playerPosY;
-    private float playerPosZ;
     private float playreRot;
 
-    //プレイヤーフラグ
-    [SerializeField] public bool inJumping = false;
+    //重力
+    [SerializeField] private Vector3 localGravity;
+    // 地面に着地しているか判断するフラグ
+    [SerializeField] private bool Ground;
 
-    private Rigidbody rb; // Rigidbodyを使うための変数
-    private bool Ground; // 地面に着地しているか判定する変数
-    public float Jumppower; // ジャンプ力
-    public float speed = 25f; //キャラクターの移動スピード
+    private Rigidbody rb;         // Rigidbodyを使うための変数
+    public float Jumppower;       // ジャンプ力
+    public float speed = 35f;     //キャラクターの移動スピード
+    public float Jumpspeed = 15f; //ジャンプ中の移動スピード
+    float dx;                     
 
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
@@ -172,35 +40,65 @@ public class PlayerMove : MonoBehaviour
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
-    int ChargeTime = 60;  //溜め時間
+    int ChargeTime = 30;       //溜め時間
+   
+    //地面との接触判定
+    private Ray ray;               //飛ばすレイ
+    private float distance = 1.2f; //レイを飛ばす距離
+    private RaycastHit rayhit;     //レイが当たった時の情報
+    private Vector3 rayPosition;   //レイを発射する位置
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
+
+        rb.useGravity = false; //rigidbodyの重力を使わないようにする
 
         //キャラクターが回転してしまわないように回転方向を固定する
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         //キャラクターのSimpleAnimationを取得
         simpleAnimation = this.GetComponent<SimpleAnimation>();
+    }
 
-        
-
+    //重力
+    private void FixedUpdate()
+    {
+        SetLocalGravity();
+    }
+    private void SetLocalGravity()
+    {
+        rb.AddForce(localGravity, ForceMode.Acceleration);
     }
 
     void Update()
     {
-        //横移動とダッシュ
-        Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0);
+        //レイを発射する位置
+        rayPosition = transform.position + new Vector3(0, 0.5f, 0);
+        //レイを下に飛ばす
+        ray = new Ray(rayPosition, Vector3.down);
+        Ground = Physics.Raycast(ray, distance);
+        //レイを赤色で表示させる
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+
+        if (ChargeAttack == false)  //攻撃してない間だけ移動できる
+        {
+             dx = Input.GetAxis("Horizontal");
+        }
+        //横移動
+        Vector3 pos = new Vector3( dx , 0);
+            
 
         //Aボタンでジャンプ
-        if (Input.GetButton("A"))//  もし、Aボタンがおされたなら、
+        if (Input.GetButtonDown("A"))// Aボタンが押されたとき
         {
-            if (Ground == true)//  もし、Groundedがtrueなら、
+            if (Ground == true)
             {
                 Ground = false;
-                inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+
+                //SE
+                sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
@@ -210,10 +108,10 @@ public class PlayerMove : MonoBehaviour
             //押している時間が ChargeTime より多いとき
             if (ChargeTime <= ChargeAttackCount)
             {
+                //突進攻撃
                 this.playerPosX = transform.position.x;　　//座標を取得
-                this.playerPosY = transform.position.y;　　//座標を取得
-                this.playerPosZ = transform.position.z;　　//座標を取得
                 this.playreRot = transform.rotation.y;
+
                 ChargeAttackCount = 0;
                 ChargeAttack = true;
             }
@@ -236,93 +134,105 @@ public class PlayerMove : MonoBehaviour
             //現在のキャラクターの位置を基準に移動
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
-            if (inJumping == true) //ジャンプ中のとき
+            if (Ground == false) //ジャンプ中のとき
             {
+                speed = Jumpspeed;
                 simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
                 //ジャンプしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
                 {
                     AttackMove();
                     simpleAnimation.CrossFade("attack", 0.1f);
-                    Invoke("Chargeflg", 0.8f);
+                    
                 }
             }
             else
             {
-                simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
-                //ダッシュしながら溜め攻撃でアタック
-                if (ChargeAttack == true)
+                speed = 35;
+                if (Ground == true)
                 {
-                    AttackMove();
-                    simpleAnimation.CrossFade("attack", 0.1f);
-                    Invoke("Chargeflg", 0.8f);
+                    //ダッシュしながら溜め攻撃でアタック
+                    if (ChargeAttack == true)
+                    {
+                        AttackMove();
+                        simpleAnimation.CrossFade("attack", 0.1f);
+
+
+                        //SE
+                        sounds.SE3();//攻撃音を再生
+                    }
+                    simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
+                    
+                    //SE
+                    sounds.SE2();   //ダッシュ音を再生
                 }
+                
             }
         }
         //アニメーションの再生(止まっている時)
-        else if (inJumping == true) //ジャンプしたとき
+        else if (Ground == false) //ジャンプしたとき
         {
+            speed = Jumpspeed;
             simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
             //ジャンプしながらBボタンでアタック
             if (ChargeAttack == true)
             {
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
-                Invoke("Chargeflg", 0.8f);
+                
+
+                //SE
+                sounds.SE4();//攻撃音を再生
             }
         }
-        else
         //Bボタンでアタック
-        if (ChargeAttack == true)
+        else if (ChargeAttack == true)
         {
             AttackMove();
-            simpleAnimation.CrossFade("attack", 0.1f);
-            Invoke("Chargeflg", 0.8f);
+            simpleAnimation.Play("attack");
+            
+
+            //SE
+            sounds.SE5();//攻撃音を再生
         }
         else
         {
+            speed = 35;
             simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
         }
     }
 
-    //地面との判定
-    void OnCollisionEnter(Collision other)//  地面に触れた時の処理
+
+
+    void attackmove0()
     {
-        if (other.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
-        {
-            Ground = true;//  Groundedをtrueにする
-            inJumping = false;
-        }
+        Chargeflg();
     }
 
     //溜め攻撃フラグ
     void Chargeflg()
     {
         ChargeAttack = false;
+        rb.velocity = new Vector3(0, 0, 0);
     }
 
     void AttackMove()  //攻撃した時の移動
     {
-        if (0<playreRot)
+        if (0 < playreRot)
         {
             rb.velocity = new Vector3(120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX + 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
-            {
-                rb.velocity = new Vector3(0, 0, 0);       
-            }
-        }
-        if(0 > playreRot)
-        {
-            
-            rb.velocity = new Vector3(-120, 0, 0);  //移動スピード
-            if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より10以上進んでいたらスピードをなくす
+            if (transform.position.x > playerPosX + 15)   //ボタンを離した時の座標より15以上進んでいたらスピードをなくす
             {
                 rb.velocity = new Vector3(0, 0, 0);
-
             }
         }
-
-
-    }
-    
+        if (0 > playreRot)
+        { 
+            rb.velocity = new Vector3(-120, 0, 0);  //移動スピード
+            if (transform.position.x < playerPosX - 15)   //ボタンを離した時の座標より15以上進んでいたらスピードをなくす
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+            }
+        }
+    }      
 }
