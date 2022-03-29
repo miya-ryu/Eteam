@@ -16,9 +16,6 @@ using UnityEngine;
 
 public class PlayerMove2 : MonoBehaviour
 {
-    //SE
-    public SOUNDS sounds;
-
     //突進攻撃
     private float playerPosX;
     private float playreRot;
@@ -29,9 +26,9 @@ public class PlayerMove2 : MonoBehaviour
     [SerializeField] private bool Ground;
 
     private Rigidbody rb;         // Rigidbodyを使うための変数
-    public float Jumppower;       // ジャンプ力
+    public float Jumppower = 3000;       // ジャンプ力
     public float speed = 35f;     //キャラクターの移動スピード
-    public float Jumpspeed = 15f; //ジャンプ中の移動スピード
+    public float Jumpspeed = 17f; //ジャンプ中の移動スピード
     float dx;
 
     //SimpleAnimation変数
@@ -47,6 +44,12 @@ public class PlayerMove2 : MonoBehaviour
     private float distance = 1.2f; //レイを飛ばす距離
     private RaycastHit rayhit;     //レイが当たった時の情報
     private Vector3 rayPosition;   //レイを発射する位置
+
+    // 使用する AudioSource をアタッチ
+    [SerializeField] private AudioSource audioSource = null;
+
+    // 使用する AudioClip をアタッチ
+    [SerializeField] public AudioClip foot;
 
     void Start()
     {
@@ -96,8 +99,6 @@ public class PlayerMove2 : MonoBehaviour
                 Ground = false;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
 
-                //SE
-                //sounds.SE1(); //音(sound1)を鳴らす
             }
         }
 
@@ -149,19 +150,18 @@ public class PlayerMove2 : MonoBehaviour
                 speed = 35f;
                 if(Ground == true)
                 {
+                    //足音を鳴らす
+                    audioSource.PlayOneShot(foot, 1.0f);
+
                     //ダッシュしながら溜め攻撃でアタック
                     if (ChargeAttack == true)
                     {
                         AttackMove();
                         simpleAnimation.CrossFade("attack", 0.1f);
 
-                        //SE
-                        //sounds.SE3();//攻撃音を再生
                     }
                     simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
 
-                    //SE
-                    //sounds.SE2();   //ダッシュ音を再生
                 }
             }
         }
@@ -176,8 +176,6 @@ public class PlayerMove2 : MonoBehaviour
                 AttackMove();
                 simpleAnimation.CrossFade("attack", 0.1f);
 
-                //SE
-                //sounds.SE4();//攻撃音を再生
             }
         }
         //Bボタンでアタック
@@ -186,8 +184,6 @@ public class PlayerMove2 : MonoBehaviour
             AttackMove();
             simpleAnimation.CrossFade("attack", 0.1f);
 
-            //SE
-            //sounds.SE5();//攻撃音を再生
         }
         else
         {
