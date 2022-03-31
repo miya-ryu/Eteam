@@ -15,7 +15,6 @@ public class ParticlePlaying : MonoBehaviour
         Chargeparticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         Circleparticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
-        //Invoke("DestroyParticle", 0.5f);
     }
 
     // Update is called once per frame
@@ -37,21 +36,4 @@ public class ParticlePlaying : MonoBehaviour
 
         }
     }
-    //void DestroyParticle()
-    //{
-    //    Destroy(Circleparticle);
-    //}
-
-    //public void Switch()
-    //{
-    //    if (isPlaying)
-    //    {
-    //        particle.Play(true);
-    //    }
-    //    else
-    //    {
-    //        particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-    //    }
-    //    isPlaying = !isPlaying;
-    //}
 }
