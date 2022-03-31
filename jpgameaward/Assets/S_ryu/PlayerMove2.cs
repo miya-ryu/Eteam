@@ -31,9 +31,6 @@ public class PlayerMove2 : MonoBehaviour
     public float Jumpspeed = 17f; //ジャンプ中の移動スピード
     float dx;
 
-    //SimpleAnimation変数
-    SimpleAnimation simpleAnimation;
-
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
@@ -45,11 +42,8 @@ public class PlayerMove2 : MonoBehaviour
     private RaycastHit rayhit;     //レイが当たった時の情報
     private Vector3 rayPosition;   //レイを発射する位置
 
-    // 使用する AudioSource をアタッチ
-    [SerializeField] private AudioSource audioSource = null;
-
-    // 使用する AudioClip をアタッチ
-    [SerializeField] public AudioClip foot;
+    // 使用する Animator をアタッチ
+    [SerializeField] Animator anim;
 
     void Start()
     {
@@ -59,9 +53,6 @@ public class PlayerMove2 : MonoBehaviour
 
         //キャラクターが回転してしまわないように回転方向を固定する
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-
-        //キャラクターのSimpleAnimationを取得
-        simpleAnimation = this.GetComponent<SimpleAnimation>();
     }
 
     //重力
@@ -98,7 +89,6 @@ public class PlayerMove2 : MonoBehaviour
             {
                 Ground = false;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
-
             }
         }
 
@@ -137,12 +127,17 @@ public class PlayerMove2 : MonoBehaviour
             if (Ground == false) //ジャンプ中のとき
             {
                 speed = Jumpspeed;
-                simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
+                //ジャンプアニメーションを再生
+                anim.SetBool("jump", true);
+                //ダッシュアニメーションを停止
+                anim.SetBool("run", false);
+
                 //ジャンプしながら溜め攻撃でアタック
                 if (ChargeAttack == true)
                 {
                     AttackMove();
-                    simpleAnimation.CrossFade("attack", 0.1f);
+                    //攻撃アニメーションを再生
+                    anim.SetBool("attack", true);
                 }
             }
             else
@@ -150,18 +145,18 @@ public class PlayerMove2 : MonoBehaviour
                 speed = 35f;
                 if(Ground == true)
                 {
-                    //足音を鳴らす
-                    audioSource.PlayOneShot(foot, 1.0f);
+                    //ダッシュアニメーションを再生
+                    anim.SetBool("run", true);
+                    //ジャンプアニメーションを停止
+                    anim.SetBool("jump", false);
 
                     //ダッシュしながら溜め攻撃でアタック
                     if (ChargeAttack == true)
                     {
                         AttackMove();
-                        simpleAnimation.CrossFade("attack", 0.1f);
-
+                        //攻撃アニメーションを再生
+                        anim.SetBool("attack", true);
                     }
-                    simpleAnimation.CrossFade("Sprint", 0.1f);      //ダッシュアニメーションを再生
-
                 }
             }
         }
@@ -169,26 +164,35 @@ public class PlayerMove2 : MonoBehaviour
         else if (Ground == false) //ジャンプしたとき
         {
             speed = Jumpspeed;
-            simpleAnimation.CrossFade("Jump", 0.1f);        //ジャンプアニメーションを再生
+            //ジャンプアニメーションを再生
+            anim.SetBool("jump", true);
+            //ダッシュアニメーションを停止
+            anim.SetBool("run", false);
+
             //ジャンプしながらBボタンでアタック
             if (ChargeAttack == true)
             {
                 AttackMove();
-                simpleAnimation.CrossFade("attack", 0.1f);
-
+                //攻撃アニメーションを再生
+                anim.SetBool("attack", true);
             }
         }
         //Bボタンでアタック
         else if (ChargeAttack == true)
         {
             AttackMove();
-            simpleAnimation.CrossFade("attack", 0.1f);
-
+            //攻撃アニメーションを再生
+            anim.SetBool("attack", true);
         }
         else
         {
             speed = 35f;
-            simpleAnimation.Play("Default");        //デフォルトアニメーションを再生
+            //ダッシュアニメーションを停止
+            anim.SetBool("run", false);
+            //ジャンプアニメーションを停止
+            anim.SetBool("jump", false);
+            //攻撃アニメーションを停止
+            anim.SetBool("attack", false);
         }
     }
 

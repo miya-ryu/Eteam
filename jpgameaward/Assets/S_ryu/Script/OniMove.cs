@@ -35,8 +35,8 @@ public class OniMove : MonoBehaviour
     //Oniの体力
     private float Oni_hp = 3;
 
-    //SimpleAnimation変数
-    SimpleAnimation simpleAnimation;
+    // 使用する Animator をアタッチ
+    [SerializeField] Animator anim;
 
     void Start()
     {
@@ -48,9 +48,7 @@ public class OniMove : MonoBehaviour
         //追跡したいオブジェクトの名前を入れる
         player = GameObject.Find("Player");
 
-        //キャラクターのSimpleAnimationを取得
-        simpleAnimation = this.GetComponent<SimpleAnimation>();
-        simpleAnimation.CrossFade("Walk", 0.1f);
+        anim.SetBool("Walk", true);
     }
 
     void GotoNextPoint()
@@ -107,7 +105,9 @@ public class OniMove : MonoBehaviour
             if (distance > attackRange)
             {
                 attack = false;
-                simpleAnimation.CrossFade("Walk", 0.1f);
+                anim.SetBool("Walk", true);
+                anim.SetBool("Attack", false);
+                anim.SetBool("Attack2", false);
             }
         }
         else
@@ -116,13 +116,14 @@ public class OniMove : MonoBehaviour
             if (distance < attackRange)
             {
                 attack = true;
-                simpleAnimation.CrossFade("Attack", 0.1f);
+                anim.SetBool("Attack", true);
             }
             //PlayerがtrackingRange3より近づいたら攻撃開始
-            else if (attackRange2 <= 7)
+            if (attackRange < attackRange2)
             {
+                Debug.Log("近づいた");
                 attack = true;
-                simpleAnimation.CrossFade("Attack2", 0.1f);
+                anim.SetBool("Attack2", true);
             }
         }
 
@@ -178,7 +179,7 @@ public class OniMove : MonoBehaviour
         }
         if (Oni_hp == 0)
         {
-            simpleAnimation.CrossFade("Dead", 0.1f);
+            anim.SetBool("Dead", true);
 
             // パーティクルシステムのインスタンスを生成する。
             ParticleSystem newParticle = Instantiate(particle);
