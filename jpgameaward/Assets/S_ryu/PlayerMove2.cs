@@ -115,84 +115,66 @@ public class PlayerMove2 : MonoBehaviour
             ChargeAttackCount = 0;
         }
 
-        //アニメーションの再生(ダッシュ中)
-        if (pos.magnitude > 0.1) //posからベクトルの長さを取得
+        if (ChargeAttack == false)
         {
-            //posの方向に回転
-            transform.rotation = Quaternion.LookRotation(pos);
+            //アニメーションの再生(ダッシュ中)
+            if (pos.magnitude > 0.1) //posからベクトルの長さを取得
+            {
+                //posの方向に回転
+                transform.rotation = Quaternion.LookRotation(pos);
 
-            //現在のキャラクターの位置を基準に移動
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+                //現在のキャラクターの位置を基準に移動
+                transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
-            if (Ground == false) //ジャンプ中のとき
+                if (Ground == false) //ジャンプ中のとき
+                {
+                    speed = Jumpspeed;
+                    //ジャンプアニメーションを再生
+                    anim.SetBool("jump", true);
+                    //ダッシュアニメーションを停止
+                    anim.SetBool("run", false);
+                }
+                else
+                {
+                    speed = 35f;
+                    if (Ground == true)
+                    {
+                        if (ChargeAttack == false)
+                        {
+                            //ダッシュアニメーションを再生
+                            anim.SetBool("run", true);
+                            //ジャンプアニメーションを停止
+                            anim.SetBool("jump", false);
+                        }
+                    }
+                }
+            }
+            //アニメーションの再生(止まっている時)
+            else if (Ground == false) //ジャンプしたとき
             {
                 speed = Jumpspeed;
                 //ジャンプアニメーションを再生
                 anim.SetBool("jump", true);
                 //ダッシュアニメーションを停止
                 anim.SetBool("run", false);
-
-                //ジャンプしながら溜め攻撃でアタック
-                if (ChargeAttack == true)
-                {
-                    AttackMove();
-                    //攻撃アニメーションを再生
-                    anim.SetBool("attack", true);
-                }
             }
             else
             {
                 speed = 35f;
-                if(Ground == true)
-                {
-                    //ダッシュアニメーションを再生
-                    anim.SetBool("run", true);
-                    //ジャンプアニメーションを停止
-                    anim.SetBool("jump", false);
-
-                    //ダッシュしながら溜め攻撃でアタック
-                    if (ChargeAttack == true)
-                    {
-                        AttackMove();
-                        //攻撃アニメーションを再生
-                        anim.SetBool("attack", true);
-                    }
-                }
-            }
-        }
-        //アニメーションの再生(止まっている時)
-        else if (Ground == false) //ジャンプしたとき
-        {
-            speed = Jumpspeed;
-            //ジャンプアニメーションを再生
-            anim.SetBool("jump", true);
-            //ダッシュアニメーションを停止
-            anim.SetBool("run", false);
-
-            //ジャンプしながらBボタンでアタック
-            if (ChargeAttack == true)
-            {
-                AttackMove();
-                //攻撃アニメーションを再生
-                anim.SetBool("attack", true);
+                //ダッシュアニメーションを停止
+                anim.SetBool("run", false);
+                //ジャンプアニメーションを停止
+                anim.SetBool("jump", false);
+                //攻撃アニメーションを停止
+                anim.SetBool("attack", false);
             }
         }
         //Bボタンでアタック
-        else if (ChargeAttack == true)
+        if (ChargeAttack == true)
         {
             AttackMove();
             //攻撃アニメーションを再生
             anim.SetBool("attack", true);
-        }
-        else
-        {
-            speed = 35f;
-            //ダッシュアニメーションを停止
-            anim.SetBool("run", false);
-            //ジャンプアニメーションを停止
-            anim.SetBool("jump", false);
-            //攻撃アニメーションを停止
-            anim.SetBool("attack", false);
         }
     }
 
