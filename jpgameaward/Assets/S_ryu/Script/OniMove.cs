@@ -9,6 +9,9 @@ using DG.Tweening;
 
 public class OniMove : MonoBehaviour
 {
+    //Oni のコライダーを取得
+    public CapsuleCollider Ccol;
+
     // NavMeshAgentコンポーネントを入れる変数
     private NavMeshAgent navMeshAgent;
     public Transform[] points; //歩くポイントを入れる変数
@@ -66,7 +69,6 @@ public class OniMove : MonoBehaviour
 
     void Update()
     {
-        Damage();
 
         //Playerとこのオブジェクトの距離を測る
         playerPos = player.transform.position;
@@ -163,11 +165,29 @@ public class OniMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // katana タグの付いたゲームオブジェクトと衝突したら
-        if (other.gameObject.tag == "KATANA")
+        if(Ccol.enabled == true)
         {
-            Debug.Log("ヒット");
-            Oni_hp--;
+            // katana タグの付いたゲームオブジェクトと衝突したら
+            if (other.gameObject.tag == "KATANA")
+            {
+                Debug.Log("ヒット");
+                Oni_hp--;
+                HitBlink();
+                Damage();
+                Ccol.enabled = false;
+            }
+        }
+        else
+        {
+            // katana タグの付いたゲームオブジェクトと衝突したら
+            if (other.gameObject.tag == "KATANA")
+            {
+                Debug.Log("ヒット");
+                Oni_hp--;
+                HitBlink();
+                Damage();
+                Ccol.enabled = true;
+            }
         }
     }
 
@@ -175,7 +195,7 @@ public class OniMove : MonoBehaviour
     {
         if (Oni_hp == 2 || Oni_hp == 1)
         {
-            HitBlink();
+            //HitBlink();
         }
         if (Oni_hp == 0)
         {
