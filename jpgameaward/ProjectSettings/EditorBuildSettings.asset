@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SampleScene 2.unity
+    path: Assets/matayoshi/matayoshi2.unity
     guid: 84c7bcf66bb282b41904c360daf289cf
   m_configObjects: {}
