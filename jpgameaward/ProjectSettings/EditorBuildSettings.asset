@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/matayoshi/matayoshi2.unity
     guid: 84c7bcf66bb282b41904c360daf289cf
+  - enabled: 1
+    path: Assets/S_hokama/TitleScene.unity
+    guid: dbdfe5989b268e6499da9196dc07c536
+  - enabled: 1
+    path: Assets/S_hokama/ResultScene.unity
+    guid: db3576de764ff1941ac8d450c35ca621
+  - enabled: 1
+    path: Assets/S_hokama/hokama.scene/1Scene.unity
+    guid: f530a84ec773fdd47bd85fccdf7e89c3
   m_configObjects: {}
