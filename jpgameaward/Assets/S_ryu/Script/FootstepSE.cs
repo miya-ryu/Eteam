@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FootstepSE : MonoBehaviour
 {
-    [SerializeField] AudioClip audioClip;
+    [SerializeField] AudioClip audioClip1;
+    [SerializeField] AudioClip audioClip2;
     [SerializeField] private AudioSource audioSource;
 
     private void Start()
@@ -24,8 +25,20 @@ public class FootstepSE : MonoBehaviour
         audioGameObject.transform.SetParent(gameObject.transform);
 
         var audioSource = audioGameObject.AddComponent<AudioSource>();
-        audioSource.clip = audioClip;
 
         return audioSource;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            audioSource.clip = audioClip1;
+        }
+
+        if (collision.gameObject.tag == "Hasi")
+        {
+            audioSource.clip = audioClip2;
+        }
     }
 }
