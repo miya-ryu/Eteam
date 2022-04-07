@@ -9,6 +9,9 @@ using DG.Tweening;
 
 public class OniMove : MonoBehaviour
 {
+    //Oni のコライダーを取得
+    public CapsuleCollider Ccol;
+
     // NavMeshAgentコンポーネントを入れる変数
     private NavMeshAgent navMeshAgent;
     public Transform[] points; //歩くポイントを入れる変数
@@ -34,6 +37,7 @@ public class OniMove : MonoBehaviour
 
     //Oniの体力
     private float Oni_hp = 3;
+    [SerializeField] bool hit = false;
 
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
@@ -44,11 +48,17 @@ public class OniMove : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         GotoNextPoint();
+        Ccollider();
 
         //追跡したいオブジェクトの名前を入れる
         player = GameObject.Find("Player");
 
         anim.SetBool("Walk", true);
+    }
+
+    void Ccollider()
+    {
+        Ccol.enabled = true;
     }
 
     void GotoNextPoint()
@@ -66,8 +76,10 @@ public class OniMove : MonoBehaviour
 
     void Update()
     {
-        Damage();
-
+        if(Ccol.enabled == false)
+        {
+            Invoke(nameof(Ccollider), 2.0f);
+        }
         //Playerとこのオブジェクトの距離を測る
         playerPos = player.transform.position;
         distance = Vector3.Distance(this.transform.position, playerPos);
@@ -163,11 +175,17 @@ public class OniMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // katana タグの付いたゲームオブジェクトと衝突したら
-        if (other.gameObject.tag == "KATANA")
+        if(Ccol.enabled == true)
         {
-            Debug.Log("ヒット");
-            Oni_hp--;
+            // katana タグの付いたゲームオブジェクトと衝突したら
+            if (other.gameObject.tag == "KATANA")
+            {
+                Debug.Log("ヒット");
+                Oni_hp--;
+                HitBlink();
+                Damage();
+                Ccol.enabled = false;
+            }
         }
     }
 
@@ -175,7 +193,7 @@ public class OniMove : MonoBehaviour
     {
         if (Oni_hp == 2 || Oni_hp == 1)
         {
-            HitBlink();
+            return;
         }
         if (Oni_hp == 0)
         {

@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - KATANA
-  - Ground
-  - Ashiba
+  - Konbou
   - GameOverArea
-  - GameOver
+  - Ground
+  - Hasi
   layers:
   - Default
   - TransparentFX
