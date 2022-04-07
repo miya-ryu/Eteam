@@ -75,12 +75,12 @@ public class PlayerMove2 : MonoBehaviour
         //レイを赤色で表示させる
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
-        if(ChargeAttack == false)  //攻撃してない間だけ移動できる
+        //横移動
+        Vector3 pos = new Vector3(dx, 0);
+        if (ChargeAttack == false)  //攻撃してない間だけ移動できる
         {
             dx = Input.GetAxis("Horizontal");
         }
-        //横移動
-        Vector3 pos = new Vector3(dx, 0);
 
         //Aボタンでジャンプ
         if (Input.GetButtonDown("A"))// Aボタンが押されたとき
@@ -88,7 +88,8 @@ public class PlayerMove2 : MonoBehaviour
             if(Ground == true)
             {
                 Ground = false;
-                rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                //上にJumpPower分力をかける
+                rb.AddForce(Vector3.up * Jumppower);
             }
         }
 
@@ -99,7 +100,7 @@ public class PlayerMove2 : MonoBehaviour
             if(ChargeTime <= ChargeAttackCount)
             {
                 //突進攻撃
-                this.playerPosX = transform.position.x;　　//座標を取得
+                this.playerPosX = transform.position.x;　//座標を取得
                 this.playreRot = transform.rotation.y;
 
                 ChargeAttackCount = 0;
@@ -137,16 +138,10 @@ public class PlayerMove2 : MonoBehaviour
                 else
                 {
                     speed = 35f;
-                    if (Ground == true)
-                    {
-                        if (ChargeAttack == false)
-                        {
-                            //ダッシュアニメーションを再生
-                            anim.SetBool("run", true);
-                            //ジャンプアニメーションを停止
-                            anim.SetBool("jump", false);
-                        }
-                    }
+                    //ジャンプアニメーションを停止
+                    anim.SetBool("jump", false);
+                    //ダッシュアニメーションを再生
+                    anim.SetBool("run", true);
                 }
             }
             //アニメーションの再生(止まっている時)
@@ -161,10 +156,10 @@ public class PlayerMove2 : MonoBehaviour
             else
             {
                 speed = 35f;
-                //ダッシュアニメーションを停止
-                anim.SetBool("run", false);
                 //ジャンプアニメーションを停止
                 anim.SetBool("jump", false);
+                //ダッシュアニメーションを停止
+                anim.SetBool("run", false);
                 //攻撃アニメーションを停止
                 anim.SetBool("attack", false);
             }
@@ -172,9 +167,22 @@ public class PlayerMove2 : MonoBehaviour
         //Bボタンでアタック
         if (ChargeAttack == true)
         {
-            AttackMove();
-            //攻撃アニメーションを再生
-            anim.SetBool("attack", true);
+            if(Ground == true)
+            {
+                AttackMove();
+                //攻撃アニメーションを再生
+                anim.SetBool("attack", true);
+                //ダッシュアニメーションを停止
+                anim.SetBool("run", false);
+            }
+            else
+            {
+                AttackMove();
+                //攻撃アニメーションを再生
+                anim.SetBool("attack", true);
+                //ジャンプアニメーションを停止
+                anim.SetBool("jump", false);
+            }
         }
     }
 

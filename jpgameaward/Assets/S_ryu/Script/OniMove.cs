@@ -37,6 +37,7 @@ public class OniMove : MonoBehaviour
 
     //Oniの体力
     private float Oni_hp = 3;
+    [SerializeField] bool hit = false;
 
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
@@ -47,11 +48,17 @@ public class OniMove : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         GotoNextPoint();
+        Ccollider();
 
         //追跡したいオブジェクトの名前を入れる
         player = GameObject.Find("Player");
 
         anim.SetBool("Walk", true);
+    }
+
+    void Ccollider()
+    {
+        Ccol.enabled = true;
     }
 
     void GotoNextPoint()
@@ -69,7 +76,10 @@ public class OniMove : MonoBehaviour
 
     void Update()
     {
-
+        if(Ccol.enabled == false)
+        {
+            Invoke(nameof(Ccollider), 2.0f);
+        }
         //Playerとこのオブジェクトの距離を測る
         playerPos = player.transform.position;
         distance = Vector3.Distance(this.transform.position, playerPos);
@@ -177,25 +187,13 @@ public class OniMove : MonoBehaviour
                 Ccol.enabled = false;
             }
         }
-        else
-        {
-            // katana タグの付いたゲームオブジェクトと衝突したら
-            if (other.gameObject.tag == "KATANA")
-            {
-                Debug.Log("ヒット");
-                Oni_hp--;
-                HitBlink();
-                Damage();
-                Ccol.enabled = true;
-            }
-        }
     }
 
     void Damage()
     {
         if (Oni_hp == 2 || Oni_hp == 1)
         {
-            //HitBlink();
+            return;
         }
         if (Oni_hp == 0)
         {

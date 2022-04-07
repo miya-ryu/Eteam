@@ -16139,7 +16139,7 @@ GameObject:
   - component: {fileID: 4308542213186220159}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Konbou
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

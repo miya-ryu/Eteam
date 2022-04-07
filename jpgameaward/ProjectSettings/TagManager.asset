@@ -9,6 +9,7 @@ TagManager:
   - Ashiba
   - GameOverArea
   - GameOver
+  - Konbou
   layers:
   - Default
   - TransparentFX
