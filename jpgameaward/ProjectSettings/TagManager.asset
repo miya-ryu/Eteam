@@ -9,6 +9,7 @@ TagManager:
   - Ashiba
   - GameOverArea
   - GameOver
+  - Hasi
   layers:
   - Default
   - TransparentFX
