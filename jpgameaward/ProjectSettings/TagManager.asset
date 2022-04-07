@@ -9,7 +9,11 @@ TagManager:
   - Ashiba
   - GameOverArea
   - GameOver
+<<<<<<< HEAD
   - Konbou
+=======
+  - Hasi
+>>>>>>> origin/FUTO4
   layers:
   - Default
   - TransparentFX
