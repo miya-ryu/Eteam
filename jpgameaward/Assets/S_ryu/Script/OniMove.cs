@@ -28,6 +28,7 @@ public class OniMove : MonoBehaviour
     [SerializeField] float quitRange = 30f;
     [SerializeField] bool tracking = false;
     [SerializeField] bool attack = false;
+    [SerializeField] bool attack2 = false;
 
     //パーティクル
     [SerializeField] private ParticleSystem particle = null;
@@ -37,7 +38,8 @@ public class OniMove : MonoBehaviour
 
     //Oniの体力
     private float Oni_hp = 3;
-    [SerializeField] bool hit = false;
+    //Oniの死亡フラグ
+    private bool Dead = false;
 
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
@@ -56,6 +58,7 @@ public class OniMove : MonoBehaviour
         anim.SetBool("Walk", true);
     }
 
+    //Oniの無敵時間を解除
     void Ccollider()
     {
         Ccol.enabled = true;
@@ -76,7 +79,8 @@ public class OniMove : MonoBehaviour
 
     void Update()
     {
-        if(Ccol.enabled == false)
+        //Oniの無敵時間が切れて2秒後に無敵解除
+        if (Ccol.enabled == false)
         {
             Invoke(nameof(Ccollider), 2.0f);
         }
@@ -113,41 +117,34 @@ public class OniMove : MonoBehaviour
 
         if (attack)
         {
-            //PlayerがtrackingRange2より距離が離れたら攻撃中止
+            //PlayerがattackRangeより距離が離れたら攻撃中止
             if (distance > attackRange)
             {
                 attack = false;
                 anim.SetBool("Walk", true);
                 anim.SetBool("Attack", false);
-                anim.SetBool("Attack2", false);
             }
         }
         else
         {
-            //PlayerがtrackingRange2より近づいたら攻撃開始
+            //PlayerがattackRangeより近づいたら攻撃開始
             if (distance < attackRange)
             {
                 attack = true;
                 anim.SetBool("Attack", true);
             }
-            //PlayerがtrackingRange3より近づいたら攻撃開始
-            if (attackRange < attackRange2)
-            {
-                Debug.Log("近づいた");
-                attack = true;
-                anim.SetBool("Attack2", true);
-            }
         }
 
-        //if (attack)
-        //{
-        //    //PlayerがtrackingRange3より距離が離れたら通常攻撃
-        //    if (attackRange2 > attackRange)
-        //    {
-        //        attack = true;
-        //        simpleAnimation.CrossFade("Attack", 0.1f);
-        //    }
-        //}
+        if (attack2)
+        {
+            if(distance < attackRange2)
+            {
+                attack = false;
+                attack2 = true;
+                anim.SetBool("Attack", false);
+                anim.SetBool("Attack2", true);
+            } 
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -157,12 +154,12 @@ public class OniMove : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, trackingRange);
 
-        //trackingRange2の範囲を緑のワイヤーフレームで示す
+        //attackRangeの範囲を緑のワイヤーフレームで示す
         //緑のワイヤー外に出ると攻撃をやめる
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        //trackingRange3の範囲を黄色のワイヤーフレームで示す
+        //attackRange2の範囲を黄色のワイヤーフレームで示す
         //黄色のワイヤー外に出ると通常攻撃になる
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange2);
@@ -175,44 +172,52 @@ public class OniMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Oniが無敵じゃない時
         if(Ccol.enabled == true)
         {
             // katana タグの付いたゲームオブジェクトと衝突したら
             if (other.gameObject.tag == "KATANA")
             {
                 Debug.Log("ヒット");
-                Oni_hp--;
-                HitBlink();
-                Damage();
-                Ccol.enabled = false;
+                Oni_hp--;　           //OniのHPを1減らす
+                Damage();             //ダメージ処理
+                Ccol.enabled = false; //無敵になる
             }
         }
     }
 
     void Damage()
     {
-        if (Oni_hp == 2 || Oni_hp == 1)
+        if(Oni_hp == 2 || Oni_hp == 1)
         {
-            return;
+            HitBlink();
         }
         if (Oni_hp == 0)
         {
-            anim.SetBool("Dead", true);
+            Dead = true;
+            if(Dead == true)
+            {
+                anim.SetBool("Dead", true);
+                Dead = false;
+            }
 
-            // パーティクルシステムのインスタンスを生成する。
-            ParticleSystem newParticle = Instantiate(particle);
+            if(Dead == false)
+            {
+                // パーティクルシステムのインスタンスを生成する。
+                ParticleSystem newParticle = Instantiate(particle);
 
-            // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
-            newParticle.transform.position = this.transform.position;
+                // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+                newParticle.transform.position = this.transform.position;
 
-            // パーティクルを発生させる。
-            newParticle.Play();
+                // パーティクルを発生させる。
+                newParticle.Play();
 
-            // インスタンス化したパーティクルシステムのGameObjectを削除する。
-            Destroy(newParticle.gameObject, 4.0f);
+                // インスタンス化したパーティクルシステムのGameObjectを削除する。
+                Destroy(newParticle.gameObject, 4.0f);
 
-            //このGameObjectを削除
-            Destroy(this.gameObject, 0.8f);
+                //このGameObjectを削除
+                Destroy(this.gameObject, 0.8f);
+            }
         }
     }
 
