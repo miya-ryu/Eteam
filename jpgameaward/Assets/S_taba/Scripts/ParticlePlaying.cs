@@ -27,11 +27,11 @@ public class ParticlePlaying : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("B") || Input.GetKey("space"))
+        if (Input.GetButton("B") || Input.GetKey("space"))//Bボタンで長押しで溜めエフェクト
         {
             cnt++;
             //cnt %= MAXCNT;
-            if(cnt == 120){
+            if(cnt == 60){//60フレームで溜まりきる
                 ChargeShock1.Play(true);
                 ChargeShock2.Play(true);
 
@@ -40,20 +40,17 @@ public class ParticlePlaying : MonoBehaviour
 
                 if (ChargeShock1 == true)
                 {
-                    Invoke("ShockWaveStop", 0.1f);
+                    Invoke("ShockWaveStop", 0.2f);
                 }
             }
 
             Chargeparticle.Play(true);
             Circleparticle.Play(true);
-            //Invoke("ShockWave", 2f);
-            //ChargeShock1.Play(true);
-            //ChargeShock2.Play(true);
 
             Circleparticle.gameObject.SetActive(true);
             
         }
-        else
+        else//キーを離したら
         {
             cnt = 0;
             Chargeparticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -69,7 +66,6 @@ public class ParticlePlaying : MonoBehaviour
     }
     void ShockWaveStop()
     {
-        
         ChargeShock1.gameObject.SetActive(false);
         ChargeShock2.gameObject.SetActive(false);
     }
