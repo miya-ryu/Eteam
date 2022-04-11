@@ -38,8 +38,6 @@ public class OniMove : MonoBehaviour
 
     //Oniの体力
     private float Oni_hp = 3;
-    //Oniの死亡フラグ
-    private bool Dead = false;
 
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
@@ -58,12 +56,6 @@ public class OniMove : MonoBehaviour
         anim.SetBool("Walk", true);
     }
 
-    //Oniの無敵時間を解除
-    void Ccollider()
-    {
-        Ccol.enabled = true;
-    }
-
     void GotoNextPoint()
     {
         // 地点がなにも設定されていないときに返します
@@ -75,6 +67,12 @@ public class OniMove : MonoBehaviour
 
         // 配列内の次の位置を目標地点に設定し、必要ならば出発地点にもどります
         destPoint = (destPoint + 1) % points.Length;
+    }
+
+    //Oniの無敵解除
+    void Ccollider()
+    {
+        Ccol.enabled = true;
     }
 
     void Update()
@@ -194,30 +192,22 @@ public class OniMove : MonoBehaviour
         }
         if (Oni_hp == 0)
         {
-            Dead = true;
-            if(Dead == true)
-            {
-                anim.SetBool("Dead", true);
-                Dead = false;
-            }
+            anim.SetBool("Dead", true);
 
-            if(Dead == false)
-            {
-                // パーティクルシステムのインスタンスを生成する。
-                ParticleSystem newParticle = Instantiate(particle);
+            // パーティクルシステムのインスタンスを生成する。
+            ParticleSystem newParticle = Instantiate(particle);
 
-                // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
-                newParticle.transform.position = this.transform.position;
+            // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+            newParticle.transform.position = this.transform.position;
 
-                // パーティクルを発生させる。
-                newParticle.Play();
+            // パーティクルを発生させる。
+            newParticle.Play();
 
-                // インスタンス化したパーティクルシステムのGameObjectを削除する。
-                Destroy(newParticle.gameObject, 4.0f);
+            // インスタンス化したパーティクルシステムのGameObjectを削除する。
+            Destroy(newParticle.gameObject, 4.0f);
 
-                //このGameObjectを削除
-                Destroy(this.gameObject, 0.8f);
-            }
+            //このGameObjectを削除
+            Destroy(this.gameObject, 0.8f);
         }
     }
 
