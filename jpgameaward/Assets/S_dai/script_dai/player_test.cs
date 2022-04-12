@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player_test : MonoBehaviour
 {
@@ -10,10 +11,18 @@ public class player_test : MonoBehaviour
     private bool Ground; // 地面に着地しているか判定する変数
     public float Jumppower; // ジャンプ力
 
+    Slider jnp_bar;     //sliderコンポーネント
+    public int jnp_hp = 100;       //ジャンプHP
+
+    private float RecoveryTime = 0f;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        jnp_bar = GameObject.Find("jnpHPbar").GetComponent<Slider>();
+        jnp_bar.maxValue = jnp_hp;
+        jnp_bar.value = 0;
 
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -28,6 +37,25 @@ public class player_test : MonoBehaviour
                 inJumping = true;
                 rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
             }
+        }
+
+        //ジャンプHP
+
+        RecoveryTime += Time.deltaTime;
+
+        if (RecoveryTime >= 1.0f)
+        {
+            if(inJumping == true)
+            {
+                jnp_bar.value -= 20;
+                jnp_hp -= 20;
+            }
+            if(inJumping == false)
+            {
+                jnp_bar.value += 5;
+                jnp_hp += 5;
+            }
+            RecoveryTime = 0;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))

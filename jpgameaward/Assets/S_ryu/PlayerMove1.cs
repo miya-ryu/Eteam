@@ -36,6 +36,8 @@ public class PlayerMove1 : MonoBehaviour
     public float speed = 35f; //キャラクターの移動スピード
     public float Jumpspeed = 15f; //ジャンプ中の移動スピード
 
+    int Jnp_hp = 100;     //ジャンプ体力
+
     //SimpleAnimation変数
     SimpleAnimation simpleAnimation;
 
