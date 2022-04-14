@@ -83,7 +83,7 @@ public class PlayerMove2 : MonoBehaviour
         }
 
         //Aボタンでジャンプ
-        if (Input.GetButtonDown("A"))// Aボタンが押されたとき
+        if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.X))// Aボタンが押されたとき
         {
             if(Ground == true)
             {

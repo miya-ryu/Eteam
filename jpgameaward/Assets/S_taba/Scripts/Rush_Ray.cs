@@ -11,6 +11,8 @@ public class Rush_Ray : MonoBehaviour
     RaycastHit hit;
     Vector3 direction;  //Rayを飛ばす方向
     float distance = 10;//Rayを飛ばす距離
+    Vector3 pos;        //移動の座標格納用
+    float step;         //移動用
 
     private void OnTriggerStay(Collider other)
     {
@@ -25,29 +27,26 @@ public class Rush_Ray : MonoBehaviour
         //if(Physics.Raycast(ray.origin,ray.direction * distance,out hit))
         hit = Physics.RaycastAll(ray).First();
         {
-            if (hit.collider.CompareTag("Player"))
+            pos = hit.point;
+            pos.y = 1f;
+            if (hit.collider.CompareTag("Enemy"))
             {
-                Debug.Log("");
+                Debug.Log("敵発見");
+
+                if(Input.GetKeyUp(KeyCode.Space))
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, pos, step);
+                }
+
             }
-            else if (hit.collider.CompareTag("Ground"))
-            {
-                Debug.Log("");
-            }
+            //else if (hit.collider.CompareTag("Ground"))
+            //{
+            //    Debug.Log("");
+            //}
             else
             {
-                Debug.Log("");
+                Debug.Log("何もない");
             }
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
