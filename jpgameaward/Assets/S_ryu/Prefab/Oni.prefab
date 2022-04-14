@@ -2417,7 +2417,7 @@ GameObject:
   - component: {fileID: 446674578}
   m_Layer: 0
   m_Name: Oni
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2518,6 +2518,7 @@ MonoBehaviour:
   quitRange: 30
   tracking: 0
   attack: 0
+  attack2: 0
   particle: {fileID: 6017199022295086768, guid: acaeaae47eb599e4fbb5ecba946d674a,
     type: 3}
   _renderer: {fileID: 4720356082735363461}

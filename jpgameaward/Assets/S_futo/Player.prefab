@@ -2625,6 +2625,7 @@ GameObject:
   - component: {fileID: 8714114199552877141}
   - component: {fileID: 6422155021372486861}
   - component: {fileID: 672098067}
+  - component: {fileID: 2129558844}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7651,6 +7652,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshcol: {fileID: 2025393135559580945}
+--- !u!114 &2129558844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124065135379748840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab5c36b3df8dd64caa220b71e1f144b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart: {fileID: 0}
+  heart1: {fileID: 0}
+  heart2: {fileID: 0}
 --- !u!1 &7419358476588483119
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,12 +8187,17 @@ PrefabInstance:
     - target: {fileID: 933541083935057407, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 933541083935057407, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 933541083935057407, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 965615319583713431, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
@@ -8241,12 +8262,22 @@ PrefabInstance:
     - target: {fileID: 2572018714280925277, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2572018714280925277, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572018714280925277, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011955576478307153, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+        type: 3}
+      propertyPath: m_Name
+      value: Chage_Shock
       objectReference: {fileID: 0}
     - target: {fileID: 4037003974814257766, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
@@ -8338,6 +8369,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7700908614275414948, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+        type: 3}
+      propertyPath: m_Name
+      value: Circle_Particle
+      objectReference: {fileID: 0}
     - target: {fileID: 8431404176341813226, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: playOnAwake
@@ -8348,16 +8384,15 @@ PrefabInstance:
       propertyPath: InitialModule.maxNumParticles
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 8984357512991072279, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+        type: 3}
+      propertyPath: m_Name
+      value: Chage_Shock
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5020647990829496488, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
     - {fileID: 2459323340846279781, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
---- !u!198 &720570991898675225 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 965615319583713431, guid: 0e3c7e6b8b799d041934101ca0cc582e,
-    type: 3}
-  m_PrefabInstance: {fileID: 331425221798273166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &607405204715505009 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 933541083935057407, guid: 0e3c7e6b8b799d041934101ca0cc582e,
@@ -8367,6 +8402,12 @@ ParticleSystem:
 --- !u!198 &2821733998290221267 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2572018714280925277, guid: 0e3c7e6b8b799d041934101ca0cc582e,
+    type: 3}
+  m_PrefabInstance: {fileID: 331425221798273166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &720570991898675225 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 965615319583713431, guid: 0e3c7e6b8b799d041934101ca0cc582e,
     type: 3}
   m_PrefabInstance: {fileID: 331425221798273166}
   m_PrefabAsset: {fileID: 0}
@@ -8391,7 +8432,7 @@ PrefabInstance:
     - target: {fileID: 3099201930849913702, guid: 2d183a3e975f4414f9c0e73ed58dfee9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3107686350264120329, guid: 2d183a3e975f4414f9c0e73ed58dfee9,
         type: 3}
@@ -8629,7 +8670,7 @@ PrefabInstance:
     - target: {fileID: 3099201930849913702, guid: 2d183a3e975f4414f9c0e73ed58dfee9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3107686350264120329, guid: 2d183a3e975f4414f9c0e73ed58dfee9,
         type: 3}
@@ -8803,7 +8844,7 @@ PrefabInstance:
     - target: {fileID: 4659751564598446597, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6498741779037734326, guid: 0e3c7e6b8b799d041934101ca0cc582e,
         type: 3}

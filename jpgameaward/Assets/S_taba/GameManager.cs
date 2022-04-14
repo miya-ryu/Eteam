@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int MenuSelect = 0;
 
     [SerializeField] GameObject PausePanel;     //ポーズ画面
+    [SerializeField] GameObject Player;     //ポーズ画面
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +38,9 @@ public class GameManager : MonoBehaviour
         countdown = 4.0f;
         pause = 0;
     }
-    void Pause()
+    void Pause() //ポーズ画面
     {
-        if (Input.GetKeyDown("joystick button 7") || Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyDown("joystick button 7") || Input.GetKeyDown(KeyCode.Escape))
         {
             if (pause == 0)
             {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
                 //GameBGM.Pause();
                 pause = 1;
 
+                Player.GetComponent<PlayerMove2>().enabled = false;
                 Time.timeScale = 0f;
             }
             else
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
                 //GameBGM.UnPause();
                 pause = 0;
                 Time.timeScale = 1f;
+                Player.GetComponent<PlayerMove2>().enabled = true;
             }
         }
         else
