@@ -12,7 +12,7 @@ public class SceneChange : MonoBehaviour
             //SceneManager.LoadScene("1Scene");
         }
 
-        if (SceneManager.GetActiveScene().name == "SampleScene 2" && Input.GetButton("start"))　　　 //シーンが1Sceneの時startボタンが押されたら
+        if (SceneManager.GetActiveScene().name == "SampleScene 2" && Input.GetButton("X"))　　　 //シーンが1Sceneの時startボタンが押されたら
         {
             SceneManager.LoadScene("ResultScene");
         }

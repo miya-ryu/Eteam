@@ -34,7 +34,7 @@ public class PlayerMove2 : MonoBehaviour
     //溜め攻撃の変数、フラグ
     bool ChargeAttack = false;
     int ChargeAttackCount;
-    int ChargeTime = 30;       //溜め時間
+    int ChargeTime = 60;       //溜め時間
 
     //地面との接触判定
     private Ray ray;               //飛ばすレイ
@@ -83,7 +83,7 @@ public class PlayerMove2 : MonoBehaviour
         }
 
         //Aボタンでジャンプ
-        if (Input.GetButtonDown("A"))// Aボタンが押されたとき
+        if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.X))// Aボタンが押されたとき
         {
             if(Ground == true)
             {
