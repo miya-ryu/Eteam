@@ -2492,7 +2492,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 1.9838237
   m_Direction: 1
   m_Center: {x: 0, y: 0.9419301, z: 0}
@@ -2523,6 +2523,12 @@ MonoBehaviour:
     type: 3}
   _renderer: {fileID: 4720356082735363461}
   anim: {fileID: 4698705851746219465}
+  ClearPanel: {fileID: 0}
+  Pause: {fileID: 0}
+  Time_Down: {fileID: 0}
+  PlayerHART: {fileID: 0}
+  countdown: 5
+  ClearTextTime: {fileID: 0}
 --- !u!1 &4640721444235208899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,6 +2968,20 @@ Transform:
   m_Father: {fileID: 4641698205124762351}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1796871388
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977467121047718725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.45501
+  m_Height: 1.172646
+  m_Direction: 1
+  m_Center: {x: -0.50147295, y: 0.47971964, z: -0.0023748449}
 --- !u!1001 &132555900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,6 +3206,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325f4596007a5af40b0f7477dc3145fc, type: 3}
+--- !u!1 &7977467121047718725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7977467120999919417, guid: 325f4596007a5af40b0f7477dc3145fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 132555900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4308542213163045891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4308542213186220159, guid: 325f4596007a5af40b0f7477dc3145fc,

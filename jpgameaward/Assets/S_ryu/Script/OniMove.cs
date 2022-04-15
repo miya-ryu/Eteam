@@ -42,6 +42,9 @@ public class OniMove : MonoBehaviour
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
 
+    //ゲームクリア画面表示
+    [SerializeField] GameObject GameClear_flg;
+
     void Start()
     {
         // NavMeshAgentを保持しておく
@@ -208,6 +211,9 @@ public class OniMove : MonoBehaviour
 
             //このGameObjectを削除
             Destroy(this.gameObject, 0.8f);
+
+            //ゲームクリアを表示させて5秒後にリザルト画面へ
+            GameClear_flg.GetComponent<GameClear_flg>().enabled = true;
         }
     }
 

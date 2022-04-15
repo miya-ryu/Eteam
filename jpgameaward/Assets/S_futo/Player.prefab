@@ -7667,6 +7667,9 @@ MonoBehaviour:
   heart: {fileID: 0}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
+  GameOverPanel: {fileID: 0}
+  Pause: {fileID: 0}
+  Player: {fileID: 7124065135379748840}
 --- !u!1 &7419358476588483119
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHERT : MonoBehaviour
 {
     public GameObject heart, heart1, heart2;
     float lifecount =  3;
     const float MAX = 3;
+
+    [SerializeField] GameObject GameOver_flg;
 
     void Update()
     {
@@ -45,7 +45,7 @@ public class PlayerHERT : MonoBehaviour
         if (lifecount == 0)
         {
             heart2.SetActive(false);
-            SceneManager.LoadScene("TitleScene");
+            GameOver_flg.GetComponent<GameOver_flg>().enabled = true;
         }
     }
 
