@@ -40,7 +40,7 @@ public class ParticlePlaying : MonoBehaviour
 
                 if (ChargeShock1 == true)
                 {
-                    Invoke("ShockWaveStop", 0.2f);
+                    Invoke("ShockWaveStop", 0.5f);
                 }
             }
 

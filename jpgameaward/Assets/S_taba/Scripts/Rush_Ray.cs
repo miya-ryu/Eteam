@@ -12,6 +12,13 @@ public class Rush_Ray : MonoBehaviour
     Vector3 direction;  //Rayを飛ばす方向
     float distance = 10;//Rayを飛ばす距離
 
+    [SerializeField] GameObject player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
     private void OnTriggerStay(Collider other)
     {
         //Rayを飛ばす方向
@@ -25,9 +32,17 @@ public class Rush_Ray : MonoBehaviour
         //if(Physics.Raycast(ray.origin,ray.direction * distance,out hit))
         hit = Physics.RaycastAll(ray).First();
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Enemy"))
             {
                 Debug.Log("");
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    //this.transform.position = hit.point;
+
+                    Vector3 hitpoint = hit.point;                                       //ｚだけ
+                    this.transform.position =                                           //ｚだけ
+                        new Vector3(this.transform.position.x, hitpoint.y, hitpoint.z); //ｚだけ
+                }
             }
             else if (hit.collider.CompareTag("Ground"))
             {
@@ -38,11 +53,6 @@ public class Rush_Ray : MonoBehaviour
                 Debug.Log("");
             }
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

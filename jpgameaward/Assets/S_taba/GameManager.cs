@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int MenuSelect = 0;
 
     [SerializeField] GameObject PausePanel;     //ポーズ画面
+    [SerializeField] GameObject Player;     //ポーズ画面
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("escキーが押された。");
                 PausePanel.SetActive(true);
+                Player.GetComponent<PlayerMove2>().enabled = false;
                 //GameBGM.Pause();
                 pause = 1;
 
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
+
+                Player.GetComponent <PlayerMove2> ().enabled = true;
                 //GameBGM.UnPause();
                 pause = 0;
                 Time.timeScale = 1f;
