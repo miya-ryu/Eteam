@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+//削除予定
+using UnityEngine.SceneManagement;
 
 //オブジェクトにNavMeshAgentコンポーネントを設置
 [RequireComponent(typeof(NavMeshAgent))]
+
 
 public class OniMove : MonoBehaviour
 {
     //Oni のコライダーを取得
     public CapsuleCollider Ccol;
+
+    //削除予定
+    [SerializeField] private int stageNum; //このボスが登場するステージ番号をインスペクターに指定
 
     // NavMeshAgentコンポーネントを入れる変数
     private NavMeshAgent navMeshAgent;
@@ -206,9 +212,24 @@ public class OniMove : MonoBehaviour
             // インスタンス化したパーティクルシステムのGameObjectを削除する。
             Destroy(newParticle.gameObject, 4.0f);
 
+            //削除予定
+            Invoke("kirikae", 0.1f);
+
             //このGameObjectを削除
             Destroy(this.gameObject, 0.8f);
         }
+    }
+
+    //削除予定
+    public void kirikae()
+    {
+        SceneManager.LoadScene("ClearScene");
+    }
+
+    //削除予定
+    public void StageOpen()
+    {
+        PlayerPrefs.SetInt("stageNumber", stageNum);//PlayerPrefsでクリアしたステージ番号をセット
     }
 
     private void HitBlink()
