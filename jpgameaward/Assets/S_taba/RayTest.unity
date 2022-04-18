@@ -405,6 +405,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb03da0c88a2c264b9e8fd7968ea38ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 0
+  target: {fileID: 0}
 --- !u!114 &879986289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +671,7 @@ GameObject:
   - component: {fileID: 1888246023}
   - component: {fileID: 1888246022}
   - component: {fileID: 1888246021}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'Player '
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -700,6 +703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb03da0c88a2c264b9e8fd7968ea38ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1888246020}
+  speed: 0
+  target: {fileID: 1089715716}
 --- !u!114 &1888246023
 MonoBehaviour:
   m_ObjectHideFlags: 0
