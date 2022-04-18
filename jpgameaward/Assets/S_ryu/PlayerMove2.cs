@@ -32,7 +32,7 @@ public class PlayerMove2 : MonoBehaviour
     float dx;
 
     //溜め攻撃の変数、フラグ
-    bool ChargeAttack = false;
+    public static bool ChargeAttack = false;
     int ChargeAttackCount;
     int ChargeTime = 60;       //溜め時間
 
@@ -174,6 +174,7 @@ public class PlayerMove2 : MonoBehaviour
                 anim.SetBool("attack", true);
                 //ダッシュアニメーションを停止
                 anim.SetBool("run", false);
+                
             }
             else
             {
@@ -185,10 +186,12 @@ public class PlayerMove2 : MonoBehaviour
             }
         }
     }
+    
 
     void attackmove0()
     {
         Chargeflg();
+        anim.SetBool("attack", false);
     }
 
     //溜め攻撃フラグ
