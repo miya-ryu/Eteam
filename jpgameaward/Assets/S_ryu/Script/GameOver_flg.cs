@@ -22,15 +22,5 @@ public class GameOver_flg : MonoBehaviour
 
         //プレイヤーを操作できなくする
         Player.GetComponent<PlayerMove2>().enabled = false;
-
-        //STERTボタンを押したら
-        if (Input.GetKeyDown("joystick button 7"))
-        {
-            //タイトルシーンへ
-            SceneManager.LoadScene("TitleScene");
-
-            //ゲーム内時間を戻す
-            Time.timeScale = 1f;
-        }
     }
 }

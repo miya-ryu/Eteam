@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour
 {
-
-
     //カウントダウン変数
     public static float countdown;
 
@@ -22,14 +19,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         InitGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Pause();
     }
 
@@ -38,6 +33,7 @@ public class GameManager : MonoBehaviour
         countdown = 4.0f;
         pause = 0;
     }
+
     void Pause() //ポーズ画面
     {
         if (Input.GetKeyDown("joystick button 7") || Input.GetKeyDown(KeyCode.Escape))
@@ -65,5 +61,17 @@ public class GameManager : MonoBehaviour
         {
             ;
         }
+    }
+
+    public void Retry()
+    {
+        //リトライ
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Title()
+    {
+        //タイトルシーンへ
+        SceneManager.LoadScene("TitleScene");
     }
 }
