@@ -174,7 +174,6 @@ public class PlayerMove2 : MonoBehaviour
                 anim.SetBool("attack", true);
                 //ダッシュアニメーションを停止
                 anim.SetBool("run", false);
-                
             }
             else
             {
@@ -187,7 +186,6 @@ public class PlayerMove2 : MonoBehaviour
         }
     }
     
-
     void attackmove0()
     {
         Chargeflg();

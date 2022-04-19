@@ -8,20 +8,43 @@ public class PlayerHERT : MonoBehaviour
     float lifecount =  3;
     const float MAX = 3;
 
+    float count;
+    bool CAttack = PlayerMove2.ChargeAttack;
+
     [SerializeField] GameObject GameOver_flg;
+
+    void Start()
+    {
+        count = 5f;
+    }
 
     void Update()
     {
         Damage();
         //lifeup();
+        count += Time.deltaTime;
+        //PlayerMove2 スクリプトの ChargeAttack を代入
+        CAttack = PlayerMove2.ChargeAttack;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Konbou")
         {
-            Debug.Log("ダメージをうけた");
-            lifecount--;
+            if(count > 2)
+            {
+                //攻撃をしていなければ
+                if(CAttack == false)
+                {
+                    lifecount--;
+                    count = 0;
+                }
+            }
+
+            if(lifecount < 0)
+            {
+                lifecount = 0;
+            }
         }
 
         //if (col.gameObject.name == "PointUp")
