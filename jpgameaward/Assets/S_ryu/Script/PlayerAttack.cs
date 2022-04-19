@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public MeshCollider meshcol;
-
+    
     void Start()
     {
         meshcol.enabled = false;
+
     }
 
     public void AttackStart()
@@ -20,4 +21,5 @@ public class PlayerAttack : MonoBehaviour
     {
         meshcol.enabled = false;
     }
+    
 }

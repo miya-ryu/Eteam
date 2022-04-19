@@ -9,6 +9,8 @@ using DG.Tweening;
 
 public class OniMove : MonoBehaviour
 {
+    float count;  
+
     //Oni のコライダーを取得
     public CapsuleCollider Ccol;
 
@@ -47,6 +49,8 @@ public class OniMove : MonoBehaviour
 
     void Start()
     {
+        count = 4f;　　　//最初は条件をクリアできるように
+
         // NavMeshAgentを保持しておく
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -80,6 +84,8 @@ public class OniMove : MonoBehaviour
 
     void Update()
     {
+        count += Time.deltaTime;　//カウント
+
         //Oniの無敵時間が切れて2秒後に無敵解除
         if (Ccol.enabled == false)
         {
@@ -179,10 +185,14 @@ public class OniMove : MonoBehaviour
             // katana タグの付いたゲームオブジェクトと衝突したら
             if (other.gameObject.tag == "KATANA")
             {
-                Debug.Log("ヒット");
-                Oni_hp--;　           //OniのHPを1減らす
-                Damage();             //ダメージ処理
-                Ccol.enabled = false; //無敵になる
+                if (count > 2)　//カウントが以上の時ダメージを受ける
+                {
+                    count = 0;  //カウントリセット
+                    Debug.Log("ヒット");
+                    Oni_hp--;            //OniのHPを1減らす
+                    Damage();             //ダメージ処理
+                    Ccol.enabled = false; //無敵になる
+                }
             }
         }
     }
