@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +10,8 @@ public class StageSelector : MonoBehaviour
     private int stageNumber; //ステージ開放条件の値を格納
 
     //ステージ1はゲームスタート時に解放されているのでstage2から
-    public Text stage2;
-    public Text stage3;
-
+    public Text Stage2;
+    public Text Stage3;
 
     void Start()
     {
@@ -23,13 +23,12 @@ public class StageSelector : MonoBehaviour
     {
         if (stageNumber >= 2)
         {
-            stage2.text = "荒れた広野"; //ステージ2の名前
+            Stage2.text = "荒れた広野"; //ステージ2の名前
         }
 
         if (stageNumber >= 3)
         {
-            stage3.text = "滑稽の洞窟"; //ステージ3の名前
+            Stage3.text = "滑稽の洞窟"; //ステージ3の名前
         }
-
     }
 }

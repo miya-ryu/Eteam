@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Select : MonoBehaviour
 {
+    private int stageNumber;
+
     Button Stage1;
     Button Stage2;
     Button Stage3;
@@ -17,10 +19,13 @@ public class Select : MonoBehaviour
 
         //最初に選択状態にするボタン
         Stage1.Select();
+
+        Stage2.interactable = false;
+        Stage3.interactable = false;
     }
 
     void Update()
     {
-        
+
     }
 }

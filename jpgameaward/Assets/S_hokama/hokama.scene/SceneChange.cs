@@ -6,7 +6,7 @@ public class SceneChange : MonoBehaviour
 {
     void Update()
     {
-        //削除予定
+
         if (SceneManager.GetActiveScene().name == "TitleScene" && Input.GetButton("start")) 　//シーンがTitleSceneの時startボタンが押されたら
         {
             SceneManager.LoadScene("StageSelect");
