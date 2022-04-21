@@ -6,13 +6,6 @@ public class EnemyParticle : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particle = null;
 
-    
-
-    private void Start()
-    {
-       
-    }
-
     private void OnTriggerEnter(Collider other)
     {
 
@@ -25,18 +18,14 @@ public class EnemyParticle : MonoBehaviour
             // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
             newParticle.transform.position = this.transform.position;
 
-           
-
             // パーティクルを発生させる。
             newParticle.Play();
 
             //このGameObjectを削除
-            Destroy(this.gameObject,1.8f);
+            Destroy(this.gameObject);
 
             // インスタンス化したパーティクルシステムのGameObjectを削除する。
             Destroy(newParticle.gameObject, 4.0f);
-
-            
         }
     }
 }

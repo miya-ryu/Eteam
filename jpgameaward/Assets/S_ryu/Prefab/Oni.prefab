@@ -2415,6 +2415,7 @@ GameObject:
   - component: {fileID: 4640020508294710670}
   - component: {fileID: 446674583}
   - component: {fileID: 446674578}
+  - component: {fileID: -1848099463074924538}
   m_Layer: 0
   m_Name: Oni
   m_TagString: Enemy
@@ -2523,12 +2524,20 @@ MonoBehaviour:
     type: 3}
   _renderer: {fileID: 4720356082735363461}
   anim: {fileID: 4698705851746219465}
-  ClearPanel: {fileID: 0}
-  Pause: {fileID: 0}
-  Time_Down: {fileID: 0}
-  PlayerHART: {fileID: 0}
-  countdown: 5
-  ClearTextTime: {fileID: 0}
+  GameClear_flg: {fileID: 0}
+--- !u!114 &-1848099463074924538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640721444222180135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfca25d11a7b074ea58bc04f4c94f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: {fileID: 0}
 --- !u!1 &4640721444235208899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,15 +3215,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325f4596007a5af40b0f7477dc3145fc, type: 3}
---- !u!1 &7977467121047718725 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7977467120999919417, guid: 325f4596007a5af40b0f7477dc3145fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 132555900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4308542213163045891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4308542213186220159, guid: 325f4596007a5af40b0f7477dc3145fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 132555900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7977467121047718725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7977467120999919417, guid: 325f4596007a5af40b0f7477dc3145fc,
     type: 3}
   m_PrefabInstance: {fileID: 132555900}
   m_PrefabAsset: {fileID: 0}

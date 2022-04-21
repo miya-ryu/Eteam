@@ -4787,6 +4787,7 @@ GameObject:
   - component: {fileID: 6345543940891316812}
   - component: {fileID: 3705793885865928745}
   - component: {fileID: 1242587850995664042}
+  - component: {fileID: 1355679077803045986}
   m_Layer: 0
   m_Name: FireBall_2
   m_TagString: Enemy
@@ -4924,3 +4925,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
+--- !u!114 &1355679077803045986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499557167719888245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfca25d11a7b074ea58bc04f4c94f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: {fileID: 0}
