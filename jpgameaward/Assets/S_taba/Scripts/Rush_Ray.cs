@@ -12,23 +12,26 @@ public class Rush_Ray : MonoBehaviour
     Vector3 direction;  //Rayを飛ばす方向
     float distance = 10;//Rayを飛ばす距離
 
-    //test2
-    [SerializeField] GameObject player;
-
-    public float speed;
+    [SerializeField] float speed;
     public GameObject target;
+
+    public Vector3 hitpoint;
+
+    private Rigidbody rb;         // Rigidbodyを使うための変数
+
+    public bool flag;
 
     private void Start()
     {
         speed = 1f;
+        flag = false;
+        rb = GetComponent<Rigidbody>(); //rbにRigidbodyを代入
     }
 
-    //void Update()
-    //{
-    //    //自分の位置、ターゲット、速度
-    //    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
-    //}
-
+    private void Update()
+    {
+        
+    }
     private void OnTriggerStay(Collider other)
     {
         //Rayを飛ばす方向
@@ -39,44 +42,57 @@ public class Rush_Ray : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);  //Rayをシーン上に描画
 
         //Rayが最初に当たった物体を調べる
-        //if(Physics.Raycast(ray.origin,ray.direction * distance,out hit))
-        hit = Physics.RaycastAll(ray).First();
+        if (Physics.Raycast(ray.origin, ray.direction * distance, out hit))
+        //hit = Physics.RaycastAll(ray).First();
         {
+
+            Vector3 hitpoint = hit.point;
+
+            //transform.position = Vector3.MoveTowards(transform.position, hitpoint, speed);
 
             if (hit.collider.CompareTag("Enemy"))
             {
-                Debug.Log("敵発見");
-                Debug.Log(hit.point);//デバッグログにヒットした場所を出す
+                //Debug.Log("敵発見");
+                //Debug.Log(hit.point);//デバッグログにヒットした場所を出す
 
-                if (Input.GetButtonUp("B") || Input.GetKeyUp(KeyCode.Space))
+                if (Input.GetButtonUp("B") || Input.GetKeyDown(KeyCode.Space))
                 {
-                    //transform.position = Vector3.MoveTowards(transform.position, pos, step);//test1
-
-                    //this.transform.position = hit.point;//test2
-
-                    Vector3 hitpoint = hit.point;
-
+                    if (flag == false)
+                    {
+                        flag = true;
+                    }
                     //this.transform.position =
                     //    new Vector3(this.transform.position.x, hitpoint.y, hitpoint.z);//test2 zだけ
 
-                    transform.position = Vector3.MoveTowards(transform.position, hitpoint, speed);
-                    Invoke("Moves", 0f);
                 }
-
             }
-            else
+
+            if(flag == true)
             {
-                Debug.Log("何もない");
+                AttackMove();
             }
         }
     }
-    IEnumerator MoveUp()
+    void OnCollisionEnter(Collision other)
     {
-        while (direction.y < 3.0f)
+        if (other.gameObject.tag == "Enemy")
         {
-            direction = transform.position;
-            transform.Translate(hitpoint.x, 0.02f, 0);
-            yield return new WaitForSeconds(0.01f);
+            Debug.Log("フラグオフ");
+            flag = false ;
         }
+    }
+    void AttackMove()  //攻撃した時の移動
+    {
+        transform.position = Vector3.MoveTowards(transform.position, hit.point, speed);
+
+        if(this.transform.position == hit.point)
+        {
+            flag = false;
+        }
+    }
+
+    void flagoff()
+    {
+        flag = false;
     }
 }
