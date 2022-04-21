@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Konbou
   - Hasi
+  - Helse
   layers:
   - Default
   - TransparentFX

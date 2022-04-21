@@ -8,6 +8,7 @@ public class GameOver_flg : MonoBehaviour
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject Pause;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject Help;
 
     void Update()
     {
@@ -22,5 +23,7 @@ public class GameOver_flg : MonoBehaviour
 
         //プレイヤーを操作できなくする
         Player.GetComponent<PlayerMove2>().enabled = false;
+
+        Help.SetActive(false);
     }
 }

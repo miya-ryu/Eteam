@@ -21,8 +21,10 @@ public class PlayerHERT : MonoBehaviour
     void Update()
     {
         Damage();
-        //lifeup();
+        lifeup();
+
         count += Time.deltaTime;
+
         //PlayerMove2 スクリプトの ChargeAttack を代入
         CAttack = PlayerMove2.ChargeAttack;
     }
@@ -46,13 +48,16 @@ public class PlayerHERT : MonoBehaviour
                 lifecount = 0;
             }
         }
+    }
 
-        //if (col.gameObject.name == "PointUp")
-        //{
-        //    //Debug.Log("回復した");
-        //    lifecount++;
-        //    lifecount = System.Math.Min(lifecount, MAX);
-        //}
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Helse")
+        {
+            //Debug.Log("回復した");
+            lifecount++;
+            lifecount = System.Math.Min(lifecount, MAX);
+        }
     }
 
     void Damage()
@@ -72,16 +77,16 @@ public class PlayerHERT : MonoBehaviour
         }
     }
 
-    //void lifeup()
-    //{
-    //    if (lifecount == 3|| heart2==false)
-    //    {
-    //        heart2.SetActive(true);
-    //    }
-    //    if(lifecount == 2 || heart1 == false)
-    //    {
-    //        heart1.SetActive(true);
-    //    }
-    //}
+    void lifeup()
+    {
+        if (lifecount == 3 || heart == false)
+        {
+            heart.SetActive(true);
+        }
+        if (lifecount == 2 || heart1 == false)
+        {
+            heart1.SetActive(true);
+        }
+    }
 }
 
