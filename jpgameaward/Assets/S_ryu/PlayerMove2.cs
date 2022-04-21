@@ -94,7 +94,7 @@ public class PlayerMove2 : MonoBehaviour
         }
 
         //溜め攻撃
-        if (Input.GetButtonUp("B"))
+        if (Input.GetButtonUp("B")||Input.GetKeyUp(KeyCode.Space))
         {
             //押している時間が ChargeTime より多いとき
             if(ChargeTime <= ChargeAttackCount)
@@ -107,7 +107,7 @@ public class PlayerMove2 : MonoBehaviour
                 ChargeAttack = true;
             }
         }
-        if (Input.GetButton("B"))
+        if (Input.GetButton("B") || Input.GetKey(KeyCode.Space))
         {
             ChargeAttackCount++;
         }
