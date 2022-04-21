@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static float countdown;
 
     //ポーズ画面
-    private int pause;
+    public static int pause;
     private int MenuSelect = 0;
 
     [SerializeField] GameObject PausePanel;     //ポーズ画面
@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     {
         countdown = 4.0f;
         pause = 0;
+        PausePanel.SetActive(false);
+        Time.timeScale = 1f;
+        Player.GetComponent<PlayerMove2>().enabled = true;
     }
     void Pause() //ポーズ画面
     {
@@ -48,7 +51,6 @@ public class GameManager : MonoBehaviour
                 PausePanel.SetActive(true);
                 //GameBGM.Pause();
                 pause = 1;
-
                 Player.GetComponent<PlayerMove2>().enabled = false;
                 Time.timeScale = 0f;
             }
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ;
+            
         }
     }
 }
