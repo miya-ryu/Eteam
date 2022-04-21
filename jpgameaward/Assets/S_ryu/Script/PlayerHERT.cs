@@ -54,9 +54,17 @@ public class PlayerHERT : MonoBehaviour
     {
         if (collision.gameObject.tag == "Helse")
         {
-            //Debug.Log("回復した");
-            lifecount++;
-            lifecount = System.Math.Min(lifecount, MAX);
+            if(lifecount == 3)
+            {
+                
+            }
+            else
+            {
+                //Debug.Log("回復した");
+                lifecount++;
+                lifecount = System.Math.Min(lifecount, MAX);
+                Destroy(collision.gameObject);
+            }
         }
     }
 
