@@ -13,6 +13,8 @@ public class PlayerHERT : MonoBehaviour
 
     [SerializeField] GameObject GameOver_flg;
 
+    public SoundScript DamageClip;
+
     void Start()
     {
         count = 5f;
@@ -39,6 +41,7 @@ public class PlayerHERT : MonoBehaviour
                 if(CAttack == false)
                 {
                     lifecount--;
+                    DamageClip.Damage();
                     count = 0;
                 }
             }

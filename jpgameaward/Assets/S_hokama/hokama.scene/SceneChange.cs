@@ -14,7 +14,7 @@ public class SceneChange : MonoBehaviour
             SceneManager.LoadScene("StageSelect");
         }
 
-        if (SceneManager.GetActiveScene().name == "ClearScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
+        if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
         {
             SceneManager.LoadScene("TitleScene");
         }

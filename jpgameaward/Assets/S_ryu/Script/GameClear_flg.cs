@@ -12,6 +12,8 @@ public class GameClear_flg : MonoBehaviour
     [SerializeField] GameObject PlayerHART;
     [SerializeField] GameObject Help;
 
+    public SoundScript GameClearClip;
+
     //カウントダウン
     public float countdown = 5.0f;
 
@@ -40,6 +42,8 @@ public class GameClear_flg : MonoBehaviour
 
         //ヘルプを非表示にする
         Help.SetActive(false);
+
+        GameClearClip.GameClear();
 
         if (countdown <= 0)
         {
