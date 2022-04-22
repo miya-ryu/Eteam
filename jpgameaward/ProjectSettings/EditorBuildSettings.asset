@@ -14,4 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/S_hokama/ResultScene.unity
     guid: db3576de764ff1941ac8d450c35ca621
+  - enabled: 0
+    path: Assets/matayoshi/ClearScene.unity
+    guid: ab22a9aa53b5d794a9c6bad9abf8641e
+  - enabled: 0
+    path: Assets/matayoshi/matayoshi3.unity
+    guid: f24a8820463112a44a91833e6d2dcd2a
+  - enabled: 1
+    path: Assets/matayoshi/StageSelect.unity
+    guid: de9c5f676fa7d72498e5786904b8dd2f
+  - enabled: 0
+    path: Assets/matayoshi/matayoshi.unity
+    guid: 82564bb1e92a44149b41198e621f960c
+  - enabled: 0
+    path: Assets/matayoshi/matayoshi2.unity
+    guid: 84c7bcf66bb282b41904c360daf289cf
   m_configObjects: {}

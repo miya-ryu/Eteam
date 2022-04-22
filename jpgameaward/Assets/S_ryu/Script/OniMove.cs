@@ -7,6 +7,7 @@ using DG.Tweening;
 //オブジェクトにNavMeshAgentコンポーネントを設置
 [RequireComponent(typeof(NavMeshAgent))]
 
+
 public class OniMove : MonoBehaviour
 {
     float count;  
