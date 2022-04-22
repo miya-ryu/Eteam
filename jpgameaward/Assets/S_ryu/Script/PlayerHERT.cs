@@ -48,22 +48,17 @@ public class PlayerHERT : MonoBehaviour
                 lifecount = 0;
             }
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Helse")
+        if (other.gameObject.tag == "Helse")
         {
-            if(lifecount == 3)
+            if (lifecount == 3)
             {
-                
             }
             else
             {
-                //Debug.Log("回復した");
                 lifecount++;
                 lifecount = System.Math.Min(lifecount, MAX);
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject, 0.1f);
             }
         }
     }

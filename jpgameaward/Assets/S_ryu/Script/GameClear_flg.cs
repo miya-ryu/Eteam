@@ -10,6 +10,7 @@ public class GameClear_flg : MonoBehaviour
     [SerializeField] GameObject Pause;
     [SerializeField] GameObject Time_Down;
     [SerializeField] GameObject PlayerHART;
+    [SerializeField] GameObject Help;
 
     //カウントダウン
     public float countdown = 5.0f;
@@ -36,6 +37,9 @@ public class GameClear_flg : MonoBehaviour
 
         //体力が減らないようにする
         PlayerHART.GetComponent<PlayerHERT>().enabled = false;
+
+        //ヘルプを非表示にする
+        Help.SetActive(false);
 
         if (countdown <= 0)
         {

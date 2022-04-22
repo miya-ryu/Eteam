@@ -24,6 +24,7 @@ public class GameOver_flg : MonoBehaviour
         //プレイヤーを操作できなくする
         Player.GetComponent<PlayerMove2>().enabled = false;
 
+        //ヘルプを非表示にする
         Help.SetActive(false);
     }
 }

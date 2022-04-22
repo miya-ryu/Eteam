@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
     public static int pause;
     private int MenuSelect = 0;
 
-    [SerializeField] GameObject PausePanel;     //ポーズ画面
+    [SerializeField] GameObject PausePanel; //ポーズ画面
     [SerializeField] GameObject Player;     //ポーズ画面
+    [SerializeField] GameObject Help;       //ヘルプテキスト
 
-    // Start is called before the first frame update
     void Start()
     {
         InitGame();
@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("escキーが押された。");
                 PausePanel.SetActive(true);
+
+                //ヘルプを非表示にする
+                Help.SetActive(false);
+
                 //GameBGM.Pause();
                 pause = 1;
                 Player.GetComponent<PlayerMove2>().enabled = false;
@@ -53,6 +57,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
+
+                //ヘルプを表示する
+                Help.SetActive(true);
+
                 //GameBGM.UnPause();
                 pause = 0;
                 Time.timeScale = 1f;
