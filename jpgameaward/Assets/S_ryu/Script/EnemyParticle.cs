@@ -6,6 +6,8 @@ public class EnemyParticle : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particle = null;
 
+    [SerializeField] private ParticleSystem blood;
+
     private void OnTriggerEnter(Collider other)
     {
 

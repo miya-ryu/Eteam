@@ -12,10 +12,8 @@ public class ParticlePlaying : MonoBehaviour
 
     //[SerializeField] ParticleSystem test;
 
-    public int cnt = 0;
-    const int MAXCNT = 60;
-
-    public int cnt1;
+    public int cnt = 0;    //溜め時間を管理する変数
+    const int MAXCNT = 60; //溜まりきる時間を格納する変数
 
     // Start is called before the first frame update
     void Start()
@@ -34,15 +32,15 @@ public class ParticlePlaying : MonoBehaviour
             cnt++;
             if (cnt == 60)
             {//60フレームで溜まりきる
-                ChargeShock1.gameObject.SetActive(true);
-                ChargeShock2.gameObject.SetActive(true);
+                ChargeShock1.gameObject.SetActive(true);　//ショックウェーブのオブジェクトを表示
+                ChargeShock2.gameObject.SetActive(true);  //ショックウェーブのオブジェクトを表示
 
-                ChargeShock1.Play(true);
-                ChargeShock2.Play(true);
+                ChargeShock1.Play(true);                  //ショックウェーブを再生
+                ChargeShock2.Play(true);                  //ショックウェーブを再生
 
                 if (ChargeShock1 == true)
                 {
-                    Invoke("ShockWaveStop", 1f);
+                    Invoke("ShockWaveStop", 1f);          //1秒後にショックウェーブを止める関数を呼ぶ
                 }
 
 
@@ -50,15 +48,15 @@ public class ParticlePlaying : MonoBehaviour
                 //test.Play(true);
             }
 
-            Chargeparticle.Play(true);
-            Circleparticle.Play(true);
+            Chargeparticle.Play(true);      //溜めエフェクトを再生
+            Circleparticle.Play(true);      //溜めエフェクトを再生
 
-            Circleparticle.gameObject.SetActive(true);
+            Circleparticle.gameObject.SetActive(true);//溜めエフェクトのオブジェクトを表示
 
         }
         else//キーを離したら
         {
-            cnt = 0;
+            cnt = 0;    //カウントを0にする
             Chargeparticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             Circleparticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             //ChargeShock1.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -73,22 +71,8 @@ public class ParticlePlaying : MonoBehaviour
             //test.gameObject.SetActive(false);
 
         }
-        //if (Input.GetKey(KeyCode.Z))
-        //{
-        //    cnt1++;
-        //    if (cnt1 == 60)
-        //    {//120フレームで溜まりきる
-        //        test.gameObject.SetActive(true);
-        //        test.Play(true);
-        //    }
-        //}
-        //else
-        //{
-        //    cnt1 = 0;
-        //    test.gameObject.SetActive(false);
-        //}
     }
-    void ShockWaveStop()
+    void ShockWaveStop() //ショックウェーブを止める関数
     {
         ChargeShock1.gameObject.SetActive(false);
         ChargeShock2.gameObject.SetActive(false);
