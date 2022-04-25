@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemydownsound : MonoBehaviour
 {
-    public AudioClip sound1;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip EnemyClip;
 
     private void OnTriggerEnter(Collider other)
     {

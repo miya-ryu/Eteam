@@ -13,7 +13,10 @@ public class PlayerHERT : MonoBehaviour
 
     [SerializeField] GameObject GameOver_flg;
 
+    //SoundScript の Damage 関数を取得
     public SoundScript DamageClip;
+    //SoundScript の Helse 関数を取得
+    public SoundScript HelseClip;
 
     void Start()
     {
@@ -41,6 +44,7 @@ public class PlayerHERT : MonoBehaviour
                 if(CAttack == false)
                 {
                     lifecount--;
+                    //音を鳴らす
                     DamageClip.Damage();
                     count = 0;
                 }
@@ -60,6 +64,8 @@ public class PlayerHERT : MonoBehaviour
             else
             {
                 lifecount++;
+                //音を鳴らす
+                HelseClip.Helse();
                 lifecount = System.Math.Min(lifecount, MAX);
                 Destroy(other.gameObject, 0.1f);
             }

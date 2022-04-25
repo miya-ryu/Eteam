@@ -45,6 +45,7 @@ public class PlayerMove2 : MonoBehaviour
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
 
+    //SoundScript の Jump 関数を取得
     public SoundScript JumpClip;
 
     void Start()

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    //KATANA の MeshCollider を取得
     public MeshCollider meshcol;
 
+    //SoundScript の Attack 関数を取得
     public SoundScript AttackClip;
 
     void Start()
@@ -23,5 +25,4 @@ public class PlayerAttack : MonoBehaviour
     {
         meshcol.enabled = false;
     }
-    
 }

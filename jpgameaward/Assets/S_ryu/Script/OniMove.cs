@@ -7,7 +7,6 @@ using DG.Tweening;
 //オブジェクトにNavMeshAgentコンポーネントを設置
 [RequireComponent(typeof(NavMeshAgent))]
 
-
 public class OniMove : MonoBehaviour
 {
     float count;  
@@ -47,6 +46,9 @@ public class OniMove : MonoBehaviour
 
     //ゲームクリア画面表示
     [SerializeField] GameObject GameClear_flg;
+
+    //SoundScript の BosEnemy 関数を取得
+    public SoundScript BosEnemyClip;
 
     void Start()
     {
@@ -189,8 +191,8 @@ public class OniMove : MonoBehaviour
                 if (count > 2)　//カウントが以上の時ダメージを受ける
                 {
                     count = 0;  //カウントリセット
-                    Debug.Log("ヒット");
                     Oni_hp--;            //OniのHPを1減らす
+                    BosEnemyClip.BosEnemy();
                     Damage();             //ダメージ処理
                     Ccol.enabled = false; //無敵になる
                 }

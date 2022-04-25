@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameClear_flg : MonoBehaviour
 {
     [SerializeField] GameObject ClearPanel;
+    [SerializeField] GameObject BGM;
     [SerializeField] GameObject Pause;
     [SerializeField] GameObject Time_Down;
     [SerializeField] GameObject PlayerHART;
     [SerializeField] GameObject Help;
 
+    //SoundScript の GameClear 関数を取得
     public SoundScript GameClearClip;
 
     //カウントダウン
@@ -19,6 +21,11 @@ public class GameClear_flg : MonoBehaviour
 
     //時間を表示するText型の変数
     public Text ClearTextTime;
+
+    void Start()
+    {
+        GameClearClip.GameClear();
+    }
 
     void Update()
     {
@@ -31,6 +38,9 @@ public class GameClear_flg : MonoBehaviour
         //ゲームクリアを表示
         ClearPanel.SetActive(true);
 
+        //BGM を止める
+        BGM.SetActive(false);
+
         //ポーズ画面を表示できなくする
         Pause.GetComponent<GameManager>().enabled = false;
 
@@ -42,8 +52,6 @@ public class GameClear_flg : MonoBehaviour
 
         //ヘルプを非表示にする
         Help.SetActive(false);
-
-        GameClearClip.GameClear();
 
         if (countdown <= 0)
         {

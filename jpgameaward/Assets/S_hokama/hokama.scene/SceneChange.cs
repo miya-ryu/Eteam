@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
     int pause=GameManager.pause;
+
+    //SoundScript の Push 関数を取得
+    public SoundScript PushClip;
+
     void Update()
     {
         pause = GameManager.pause;
@@ -23,11 +27,14 @@ public class SceneChange : MonoBehaviour
         {
             if (Input.GetButton("A"))
             {
-                SceneManager.LoadScene("TitleScene");
+                PushClip.Push();
 
+                SceneManager.LoadScene("TitleScene");
             }
             if (Input.GetButton("B"))
             {
+                PushClip.Push();
+
                 SceneManager.LoadScene("SampleScene 2");
             }
         }
