@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Enemydownsound : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip EnemyClip;
+    //SoundScript の Enemy 関数を取得
+    public SoundScript EnemyClip;
 
     private void OnTriggerEnter(Collider other)
     {
         // katana タグの付いたゲームオブジェクトと衝突したら
         if (other.gameObject.tag == "KATANA")
         {
-            AudioSource.PlayClipAtPoint(sound1, transform.position);
+            EnemyClip.Enemy();
         }
     }
 }

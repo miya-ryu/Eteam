@@ -2524,6 +2524,7 @@ MonoBehaviour:
   _renderer: {fileID: 4720356082735363461}
   anim: {fileID: 4698705851746219465}
   GameClear_flg: {fileID: 0}
+  BosEnemyClip: {fileID: 0}
 --- !u!1 &4640721444235208899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,10 +2974,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.45501
-  m_Height: 1.172646
+  m_Radius: 2
+  m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: -0.50147295, y: 0.47971964, z: -0.0023748449}
+  m_Center: {x: 0.14163637, y: 0.4797198, z: 0.025053171}
 --- !u!1001 &132555900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2988,6 +2989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 554906300620552201, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 584983986877355985, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
@@ -3014,6 +3020,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1360257621388606267, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1521629854237508719, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
@@ -3029,6 +3040,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2058667362085627763, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2148378430923915888, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
@@ -3039,6 +3055,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2589805043962942655, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3576150978509932389, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
@@ -3048,6 +3069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683106349032346828, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4140067882300237031, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
@@ -3129,6 +3155,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4515120804312950952, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4696295338568330284, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
@@ -3138,6 +3169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920009762448012222, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5383251120803881647, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
@@ -3149,20 +3185,40 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5883377739455747217, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6380208355715937122, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380208355715937122, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6653738038602019827, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6653738038602019827, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7855102423353692636, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855102423353692636, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7940317802719698381, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
@@ -3189,15 +3245,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8447849063555577194, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8466520266758463204, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466520266758463204, guid: 325f4596007a5af40b0f7477dc3145fc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833669076710378412, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8833669076710378412, guid: 325f4596007a5af40b0f7477dc3145fc,
         type: 3}
-      propertyPath: m_Mesh
-      value: 
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325f4596007a5af40b0f7477dc3145fc, type: 3}
