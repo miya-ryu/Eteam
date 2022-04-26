@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyParticle : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particle = null;
+    [SerializeField] private ParticleSystem blood;
 
     //SoundScript の Enemy 関数を取得
     public SoundScript EnemyClip;
 
     private void OnTriggerEnter(Collider other)
     {
-
         // katana タグの付いたゲームオブジェクトと衝突したら
         if (other.gameObject.tag == "KATANA")
         {
