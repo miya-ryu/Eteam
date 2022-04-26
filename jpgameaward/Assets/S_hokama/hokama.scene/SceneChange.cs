@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
     int pause=GameManager.pause;
+
+    //SoundScript の Push 関数を取得
+    public SoundScript PushClip;
+
     void Update()
     {
+        pause = GameManager.pause;
+
         if (SceneManager.GetActiveScene().name == "TitleScene" && Input.GetButton("start")) 　//シーンがTitleSceneの時startボタンが押されたら
         {
             SceneManager.LoadScene("StageSelect");
         }
-        if (SceneManager.GetActiveScene().name == "ClearScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
+
+        if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
         {
             SceneManager.LoadScene("TitleScene");
         }
@@ -20,14 +27,16 @@ public class SceneChange : MonoBehaviour
         {
             if (Input.GetButton("A"))
             {
-                SceneManager.LoadScene("TitleScene");
+                PushClip.Push();
 
+                SceneManager.LoadScene("TitleScene");
             }
             if (Input.GetButton("B"))
             {
+                PushClip.Push();
+
                 SceneManager.LoadScene("SampleScene 2");
             }
-
         }
     }
 }

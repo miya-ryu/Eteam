@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class FootstepSE : MonoBehaviour
 {
-    [SerializeField] AudioClip audioClip1;
-    [SerializeField] AudioClip audioClip2;
-    [SerializeField] AudioClip audioClip3;
+    [SerializeField] private AudioClip audioClip1;
+    [SerializeField] private AudioClip audioClip2;
     [SerializeField] private AudioSource audioSource;
 
     private void Start()
@@ -42,6 +41,4 @@ public class FootstepSE : MonoBehaviour
             audioSource.clip = audioClip2;
         }
     }
-
-
 }

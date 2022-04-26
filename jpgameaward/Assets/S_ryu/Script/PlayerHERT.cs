@@ -13,6 +13,11 @@ public class PlayerHERT : MonoBehaviour
 
     [SerializeField] GameObject GameOver_flg;
 
+    //SoundScript の Damage 関数を取得
+    public SoundScript DamageClip;
+    //SoundScript の Helse 関数を取得
+    public SoundScript HelseClip;
+
     void Start()
     {
         count = 5f;
@@ -39,6 +44,8 @@ public class PlayerHERT : MonoBehaviour
                 if(CAttack == false)
                 {
                     lifecount--;
+                    //音を鳴らす
+                    DamageClip.Damage();
                     count = 0;
                 }
             }
@@ -48,22 +55,19 @@ public class PlayerHERT : MonoBehaviour
                 lifecount = 0;
             }
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Helse")
+        if (other.gameObject.tag == "Helse")
         {
-            if(lifecount == 3)
+            if (lifecount == 3)
             {
-                
             }
             else
             {
-                //Debug.Log("回復した");
                 lifecount++;
+                //音を鳴らす
+                HelseClip.Helse();
                 lifecount = System.Math.Min(lifecount, MAX);
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject, 0.1f);
             }
         }
     }

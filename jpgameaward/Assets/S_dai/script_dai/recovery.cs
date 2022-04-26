@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class recovery : MonoBehaviour
 {
-	void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider other)
 	{
-		if (collision.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Player")
 		{
 			// 0.1秒後に消える
 			Destroy(gameObject, 0.1f);

@@ -45,6 +45,9 @@ public class PlayerMove2 : MonoBehaviour
     // 使用する Animator をアタッチ
     [SerializeField] Animator anim;
 
+    //SoundScript の Jump 関数を取得
+    public SoundScript JumpClip;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyを代入
@@ -90,6 +93,7 @@ public class PlayerMove2 : MonoBehaviour
                 Ground = false;
                 //上にJumpPower分力をかける
                 rb.AddForce(Vector3.up * Jumppower);
+                JumpClip.Jump();
             }
         }
 
