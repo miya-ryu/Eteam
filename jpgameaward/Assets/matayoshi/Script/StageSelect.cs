@@ -13,7 +13,8 @@ public class StageSelect : MonoBehaviour
     {
         stageNumber = PlayerPrefs.GetInt("stageNumber");
         Stage2.interactable = false;
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("stageNumber");
     }
 
     void Update()

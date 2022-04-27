@@ -21,5 +21,6 @@ public class StageClear : MonoBehaviour
     public void StageOpen()
     {
         PlayerPrefs.SetInt("stageNumber", stageNum);//PlayerPrefsでクリアしたステージ番号をセット
+        PlayerPrefs.Save();
     }
 }
