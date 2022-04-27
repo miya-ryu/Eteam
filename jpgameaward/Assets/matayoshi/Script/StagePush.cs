@@ -9,13 +9,13 @@ public class StagePush : MonoBehaviour
 
     public void PushButton()
     {
-        SceneManager.LoadScene("SampleScene 2");
+        SceneManager.LoadScene("matayoshi1");
     }
-
-    //public void PushButton2()
-    //{
-    //    SceneManager.LoadScene("matayoshi2");
-    //}
+    //SceneManager.LoadScene("SampleScene 2");
+    public void PushButton2()
+    {
+        SceneManager.LoadScene("matayoshi");
+    }
 
     //public void PushButton3()
     //{
