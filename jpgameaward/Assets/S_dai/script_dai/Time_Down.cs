@@ -12,6 +12,7 @@ public class Time_Down : MonoBehaviour
 
     //時間を表示するText型の変数
     public Text timeText;
+    public static string time;
 
     // Update is called once per frame
     void Update()
@@ -21,11 +22,12 @@ public class Time_Down : MonoBehaviour
 
         //時間を表示する
         timeText.text = countdown.ToString("f1") + "秒";
-
+        time = timeText.text;
         //countdownが0以下になったとき
         if (countdown <= 0)
         {
             GameOver_flg.GetComponent<GameOver_flg>().enabled = true;
+            
         }
     }
 }
