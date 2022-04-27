@@ -14,7 +14,7 @@ public class StageClear : MonoBehaviour
 
     public void OnDestroy()
     {
-        SceneManager.LoadScene("ClearScene");
+        //SceneManager.LoadScene("ClearScene");
         StageOpen();
     }
 
