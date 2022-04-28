@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleScene : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class TitleScene : MonoBehaviour
 
     void Start()
     {
-        button = GameObject.Find("Canvas/GameOverPanel/SelectButton/Button").GetComponent<Button>();
+        button = GameObject.Find("Canvas/Image/StartButton").GetComponent<Button>();
         //ボタンが選択された状態になる
         button.Select();
     }
@@ -22,9 +23,6 @@ public class TitleScene : MonoBehaviour
         //Aボタンが押されたら
         if (Input.GetButton("A"))
         {
-            //ゲーム内時間を戻す
-            Time.timeScale = 1f;
-
             PushClip.Push();
         }
     }
@@ -37,5 +35,11 @@ public class TitleScene : MonoBehaviour
 #else
     Application.Quit();//ゲームプレイ終了
 #endif
+    }
+
+    public void StageSelect()
+    {
+        //タイトルシーンへ
+        SceneManager.LoadScene("StageSelect");
     }
 }

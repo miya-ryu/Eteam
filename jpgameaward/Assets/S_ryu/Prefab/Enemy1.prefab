@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 6017199022295086768, guid: acaeaae47eb599e4fbb5ecba946d674a,
     type: 3}
+  blood: {fileID: 0}
   EnemyClip: {fileID: 0}
 --- !u!1 &7173659547226079446
 GameObject:

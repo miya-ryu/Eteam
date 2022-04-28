@@ -83,9 +83,4 @@ public class GameManager : MonoBehaviour
         //タイトルシーンへ
         SceneManager.LoadScene("TitleScene");
     }
-
-    public void StageSelect()
-    {
-
-    }
 }

@@ -4924,4 +4924,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 4366801837449311072, guid: 78f5a97477230c048a97a4c8a3322fb3,
     type: 3}
+  blood: {fileID: 0}
   EnemyClip: {fileID: 0}

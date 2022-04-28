@@ -7,6 +7,7 @@ public class ResultTime : MonoBehaviour
 {
     public Text timeText;
     public Text EnemycountText;
+    [SerializeField] GameObject ClearText;
 
     string resulttime= Time_Down.time;
     int Enemycount = Attckwall.Enemycount;
@@ -14,7 +15,16 @@ public class ResultTime : MonoBehaviour
 
     void Start()
     {
+        ClearText.SetActive(false);
         timeText.text = string.Format("残り時間　    {0}", resulttime);
         EnemycountText.text = string.Format("倒した敵    　{0}/{1}",Allenemy-Enemycount,Allenemy );   
+    }
+
+    void Update()
+    {
+        if (Allenemy - Enemycount == Allenemy)
+        {
+            ClearText.SetActive(true);
+        }
     }
 }

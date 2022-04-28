@@ -5,15 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class StagePush : MonoBehaviour
 {
-
+    //SoundScript の Push 関数を取得
+    public SoundScript PushClip;
 
     public void PushButton()
     {
+        PushClip.Push();
+
         SceneManager.LoadScene("SampleScene 2");
     }
     //SceneManager.LoadScene("SampleScene 2");
     public void PushButton2()
     {
+        PushClip.Push();
+
         SceneManager.LoadScene("SampleScene 3");
     }
 
