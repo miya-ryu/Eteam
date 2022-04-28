@@ -20,6 +20,8 @@ public class SceneChange : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
         {
+            PushClip.Push();
+
             SceneManager.LoadScene("TitleScene");
         }
 
