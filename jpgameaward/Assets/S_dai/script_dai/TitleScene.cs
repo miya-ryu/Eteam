@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleScene : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class TitleScene : MonoBehaviour
         {
             //ゲーム内時間を戻す
             Time.timeScale = 1f;
-
+            SceneManager.LoadScene("StageSelect");
             PushClip.Push();
         }
     }

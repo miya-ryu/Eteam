@@ -414,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841508088}
   - component: {fileID: 841508089}
+  - component: {fileID: 841508087}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -421,6 +422,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &841508087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841508086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101beccaa8b6ce40b92876f5252a97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageNum: 2
 --- !u!4 &841508088
 Transform:
   m_ObjectHideFlags: 0
@@ -447,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f34012b19fb244ebdc53fc2537a0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushClip: {fileID: 0}
 --- !u!1 &1249928189
 GameObject:
   m_ObjectHideFlags: 0
