@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -83,5 +82,10 @@ public class GameManager : MonoBehaviour
     {
         //タイトルシーンへ
         SceneManager.LoadScene("TitleScene");
+    }
+
+    public void StageSelect()
+    {
+
     }
 }
