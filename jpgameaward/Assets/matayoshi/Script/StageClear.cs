@@ -9,13 +9,14 @@ public class StageClear : MonoBehaviour
 
     void Update()
     {
+        StageOpen();
 
     }
 
     public void OnDestroy()
     {
         //SceneManager.LoadScene("ClearScene");
-        StageOpen();
+       
     }
 
     public void StageOpen()

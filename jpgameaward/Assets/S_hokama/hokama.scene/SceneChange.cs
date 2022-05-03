@@ -10,7 +10,7 @@ public class SceneChange : MonoBehaviour
     public SoundScript PushClip;
 
     void Update()
-    {
+    {   
         pause = GameManager.pause;
 
         if (SceneManager.GetActiveScene().name == "TitleScene" && Input.GetButton("start")) 　//シーンがTitleSceneの時startボタンが押されたら
@@ -20,7 +20,7 @@ public class SceneChange : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
         {
-            PushClip.Push();
+            //PushClip.Push();
 
             SceneManager.LoadScene("TitleScene");
         }

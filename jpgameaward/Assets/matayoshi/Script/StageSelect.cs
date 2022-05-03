@@ -15,6 +15,7 @@ public class StageSelect : MonoBehaviour
         Stage2.interactable = false;
         PlayerPrefs.DeleteAll();
         //PlayerPrefs.DeleteKey("stageNumber");
+        
     }
 
     void Update()
