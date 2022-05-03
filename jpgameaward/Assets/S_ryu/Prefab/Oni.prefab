@@ -2517,15 +2517,13 @@ MonoBehaviour:
   attackRange: 17
   attackRange2: 6
   quitRange: 30
-  tracking: 0
-  attack: 0
-  attack2: 0
   particle: {fileID: 6017199022295086768, guid: acaeaae47eb599e4fbb5ecba946d674a,
     type: 3}
   _renderer: {fileID: 4720356082735363461}
   anim: {fileID: 4698705851746219465}
   GameClear_flg: {fileID: 0}
   BosEnemyClip: {fileID: 0}
+  Bos2EnemyClip: {fileID: 0}
 --- !u!114 &1624174157
 MonoBehaviour:
   m_ObjectHideFlags: 0

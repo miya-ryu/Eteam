@@ -15,6 +15,7 @@ public class SoundScript : MonoBehaviour
     [SerializeField] private AudioClip HelseClip;
     [SerializeField] private AudioClip EnemyClip;
     [SerializeField] private AudioClip BosEnemyClip;
+    [SerializeField] private AudioClip Bos2EnemyClip;
 
     public bool DontDestroyEnabled = true;
 
@@ -65,6 +66,10 @@ public class SoundScript : MonoBehaviour
     }
     public void BosEnemy()
     {
-        audioSource.PlayOneShot(BosEnemyClip, 0.5f);
+        audioSource.PlayOneShot(BosEnemyClip, 0.7f);
+    }
+    public void Bos2Enemy()
+    {
+        audioSource.PlayOneShot(Bos2EnemyClip, 0.7f);
     }
 }
