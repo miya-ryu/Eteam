@@ -13,7 +13,7 @@ public class TitleScene : MonoBehaviour
 
     void Start()
     {
-        button = GameObject.Find("Canvas/GameOverPanel/SelectButton/Button").GetComponent<Button>();
+        button = GameObject.Find("Canvas/Image/StartButton").GetComponent<Button>();
         //ボタンが選択された状態になる
         button.Select();
     }
