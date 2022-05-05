@@ -13,9 +13,6 @@ public class StageSelect : MonoBehaviour
     {
         stageNumber = PlayerPrefs.GetInt("stageNumber");
         Stage2.interactable = false;
-        PlayerPrefs.DeleteAll();
-        //PlayerPrefs.DeleteKey("stageNumber");
-        
     }
 
     void Update()
@@ -24,6 +21,7 @@ public class StageSelect : MonoBehaviour
         {
             Stage2.interactable = true;
             Stage2Text.text = "STAGE2"; //ステージ2の名前
+            PlayerPrefs.DeleteAll();
         }
     }
 }

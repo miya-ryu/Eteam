@@ -800,6 +800,7 @@ MonoBehaviour:
   HelseClip: {fileID: 0}
   EnemyClip: {fileID: 0}
   BosEnemyClip: {fileID: 0}
+  Bos2EnemyClip: {fileID: 0}
   DontDestroyEnabled: 1
 --- !u!4 &822055351
 Transform:
@@ -940,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4691e380a1935254585ab3b6fdc3a3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushClip: {fileID: 822055350}
+  PushClip: {fileID: 0}
 --- !u!4 &1174451966
 Transform:
   m_ObjectHideFlags: 0
