@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e7ac56aa2bd9948b401603f4d2fabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 2008603767}
+  col: {fileID: 0}
 --- !u!1 &4734744379311184
 GameObject:
   m_ObjectHideFlags: 0
@@ -12404,12 +12404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f56ae95f79f5b943a07918d1572beb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localGravity: {x: 0, y: -50, z: 0}
+  localGravity: {x: 0, y: 0, z: 0}
   Ground: 0
   Jumppower: 3000
   speed: 35
   Jumpspeed: 17
-  anim: {fileID: 4182886824375240833}
+  anim: {fileID: 0}
   JumpClip: {fileID: 0}
 --- !u!136 &1520258133
 CapsuleCollider:
@@ -12546,9 +12546,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfa2355d099ef040aabd0171fada099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip1: {fileID: 8300000, guid: 18f1ff003e8fbdb44aba8266f6e1d168, type: 3}
-  audioClip2: {fileID: 8300000, guid: 7eef3c19548ace64ab38167d3f075fed, type: 3}
-  audioSource: {fileID: 331425222160993961}
+  audioClip1: {fileID: 0}
+  audioClip2: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &1816567056901445240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17318,10 +17318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61063a16558094846991f1a1d0c49b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chargeparticle: {fileID: 8186180826900031332}
-  Circleparticle: {fileID: 720570991898675225}
-  ChargeShock1: {fileID: 8356581140773516685}
-  ChargeShock2: {fileID: 5054913638008450734}
+  Chargeparticle: {fileID: 0}
+  Circleparticle: {fileID: 0}
+  ChargeShock1: {fileID: 0}
+  ChargeShock2: {fileID: 0}
   cnt: 0
 --- !u!114 &672098067
 MonoBehaviour:
@@ -17335,7 +17335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d1de14bdb9e9249b31d60a2e335bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshcol: {fileID: 2025393135559580945}
+  meshcol: {fileID: 0}
   AttackClip: {fileID: 0}
 --- !u!114 &2129558844
 MonoBehaviour:
@@ -18091,18 +18091,6 @@ PrefabInstance:
     - {fileID: 5020647990829496488, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
     - {fileID: 2459323340846279781, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0e3c7e6b8b799d041934101ca0cc582e, type: 3}
---- !u!198 &720570991898675225 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 965615319583713431, guid: 0e3c7e6b8b799d041934101ca0cc582e,
-    type: 3}
-  m_PrefabInstance: {fileID: 331425221798273166}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8186180826900031332 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8431404176341813226, guid: 0e3c7e6b8b799d041934101ca0cc582e,
-    type: 3}
-  m_PrefabInstance: {fileID: 331425221798273166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &331425222336962933
 PrefabInstance:
   m_ObjectHideFlags: 0
