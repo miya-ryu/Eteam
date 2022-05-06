@@ -24,6 +24,12 @@ public class SceneChange : MonoBehaviour
 
             SceneManager.LoadScene("TitleScene");
         }
+        if (SceneManager.GetActiveScene().name == "ResultScene1" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
+        {
+            PushClip.Push();
+
+            SceneManager.LoadScene("TitleScene");
+        }
 
         if (SceneManager.GetActiveScene().name == "SampleScene 2" && pause == 1)
         {
@@ -38,6 +44,22 @@ public class SceneChange : MonoBehaviour
                 PushClip.Push();
 
                 SceneManager.LoadScene("SampleScene 2");
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "Stage_Village" && pause == 1)
+        {
+            if (Input.GetButton("A"))
+            {
+                PushClip.Push();
+
+                SceneManager.LoadScene("TitleScene");
+            }
+            if (Input.GetButton("B"))
+            {
+                PushClip.Push();
+
+                SceneManager.LoadScene("Stage_Village");
             }
         }
     }

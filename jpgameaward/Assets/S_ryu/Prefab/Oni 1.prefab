@@ -2414,8 +2414,8 @@ GameObject:
   - component: {fileID: 4698705851746219465}
   - component: {fileID: 4640020508294710670}
   - component: {fileID: 446674583}
-  - component: {fileID: 446674578}
   - component: {fileID: 1624174157}
+  - component: {fileID: 7544793480251849300}
   m_Layer: 0
   m_Name: Oni 1
   m_TagString: Enemy
@@ -2497,35 +2497,6 @@ CapsuleCollider:
   m_Height: 1.9838237
   m_Direction: 1
   m_Center: {x: 0, y: 0.9419301, z: 0}
---- !u!114 &446674578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640721444222180135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032c2a163f0c8e64d9d7b4acac706449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ccol: {fileID: 446674583}
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  trackingRange: 20
-  attackRange: 17
-  attackRange2: 6
-  quitRange: 30
-  tracking: 0
-  attack: 0
-  attack2: 0
-  particle: {fileID: 6017199022295086768, guid: acaeaae47eb599e4fbb5ecba946d674a,
-    type: 3}
-  _renderer: {fileID: 4720356082735363461}
-  anim: {fileID: 4698705851746219465}
-  GameClear_flg: {fileID: 0}
-  BosEnemyClip: {fileID: 0}
 --- !u!114 &1624174157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2539,6 +2510,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNum: 2
+--- !u!114 &7544793480251849300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640721444222180135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b40097b45ec3f48843aba7060b2526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ccol: {fileID: 446674583}
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  trackingRange: 20
+  attackRange: 17
+  attackRange2: 6
+  quitRange: 30
+  particle: {fileID: 6017199022295086768, guid: 7e5c934dfc9a78849bb308680290bc1a,
+    type: 3}
+  _renderer: {fileID: 4720356082735363461}
+  anim: {fileID: 4698705851746219465}
+  BosEnemyClip: {fileID: 0}
+  Bos2EnemyClip: {fileID: 0}
 --- !u!1 &4640721444235208899
 GameObject:
   m_ObjectHideFlags: 0
