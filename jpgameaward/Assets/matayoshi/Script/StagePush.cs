@@ -10,20 +10,15 @@ public class StagePush : MonoBehaviour
 
     public void PushButton()
     {
-        PushClip.Push();
-
         SceneManager.LoadScene("SampleScene 2");
+
+        PushClip.Push();
     }
-    //SceneManager.LoadScene("SampleScene 2");
+
     public void PushButton2()
     {
         PushClip.Push();
 
-        SceneManager.LoadScene("SampleScene 3");
+        SceneManager.LoadScene("Stage_Village");
     }
-
-    //public void PushButton3()
-    //{
-    //    SceneManager.LoadScene("");
-    //}
 }
