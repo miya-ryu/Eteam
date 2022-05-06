@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:jpgameaward/Assets/S_ryu/GameObject (1).prefab.meta
 guid: ed88797c25cb9c8418d81cfe35f6744e
 =======
 guid: a0bcdf8473908af40a3e8a222aac4429
 >>>>>>> ryu_sub14:jpgameaward/Assets/S_ryu/Canvas.prefab.meta
+=======
+guid: a0bcdf8473908af40a3e8a222aac4429
+>>>>>>> ryu_sub14
 PrefabImporter:
   externalObjects: {}
   userData: 
