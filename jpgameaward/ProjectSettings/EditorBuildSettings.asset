@@ -15,21 +15,21 @@ EditorBuildSettings:
     path: Assets/SampleScene 2.unity
     guid: b2c37d7dce0ddb84aa1e48b539bdbe53
   - enabled: 1
+    path: Assets/Stage_Village.unity
+    guid: 910a491ca509bc14aaf2071946ebfa58
+  - enabled: 1
     path: Assets/S_hokama/ResultScene.unity
     guid: db3576de764ff1941ac8d450c35ca621
+  - enabled: 1
+    path: Assets/S_hokama/ResultScene1.unity
+    guid: f6b7b90b34c8f7746afe4b39f868c885
   - enabled: 1
     path: Assets/matayoshi/Scene/ClearScene.unity
     guid: ab22a9aa53b5d794a9c6bad9abf8641e
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/matayoshi/Scene/matayoshi1.unity
     guid: 82564bb1e92a44149b41198e621f960c
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/matayoshi/Scene/matayoshi.unity
     guid: 33379c901a4559342a0a8620fb4965dd
   m_configObjects: {}
