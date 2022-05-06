@@ -212,7 +212,7 @@ public class BOS2Move : MonoBehaviour
             Destroy(this.gameObject, 0.8f);
 
             //ゲームクリアを表示させて5秒後にリザルト画面へ
-            GameClear_flg.GetComponent<GameClear_flg>().enabled = true;
+            GameClear_flg.GetComponent<GameClear_flg1>().enabled = true;
         }
     }
 

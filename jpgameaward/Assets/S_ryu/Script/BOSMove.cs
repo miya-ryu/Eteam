@@ -7,8 +7,10 @@ using DG.Tweening;
 //オブジェクトにNavMeshAgentコンポーネントを設置
 [RequireComponent(typeof(NavMeshAgent))]
 
+
 public class BOSMove : MonoBehaviour
 {
+    [SerializeField] public int stageNum;
     float count;  
 
     //BOS のコライダーを取得
@@ -211,9 +213,17 @@ public class BOSMove : MonoBehaviour
             //このGameObjectを削除
             Destroy(this.gameObject, 0.8f);
 
+            StageOpen();
+
             //ゲームクリアを表示させて5秒後にリザルト画面へ
             GameClear_flg.GetComponent<GameClear_flg>().enabled = true;
         }
+    }
+
+    public void StageOpen()
+    {
+        PlayerPrefs.SetInt("stageNumber", stageNum);//PlayerPrefsでクリアしたステージ番号をセット
+        PlayerPrefs.Save();
     }
 
     private void HitBlink()
