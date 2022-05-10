@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 7596973568865054032}
   - component: {fileID: 4811197113682148033}
   - component: {fileID: 230327829416305754}
-  - component: {fileID: 2280443215389330739}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -291,20 +290,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!64 &2280443215389330739
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3261628177357911340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &4819387297117688738
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +302,6 @@ GameObject:
   - component: {fileID: 3527441816148582363}
   - component: {fileID: 2713520035450282097}
   - component: {fileID: 4925440961853057762}
-  - component: {fileID: 776646410838680074}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Ground
@@ -643,6 +627,7 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+<<<<<<< HEAD
 --- !u!64 &776646410838680074
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -657,3 +642,5 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+=======
+>>>>>>> ryu_sub16

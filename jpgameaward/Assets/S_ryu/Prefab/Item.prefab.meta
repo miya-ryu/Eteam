@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:jpgameaward/Assets/S_ryu/Prefab/Item.prefab.meta
 guid: a49b9d79140d3ac47ba53b2c2784d8a8
 =======
@@ -8,6 +9,13 @@ guid: e859991742995684ebdbed49adbc1958
 =======
 guid: a49b9d79140d3ac47ba53b2c2784d8a8
 >>>>>>> ryu_sub14
+=======
+<<<<<<< HEAD:jpgameaward/Assets/S_ryu/GameObject.prefab.meta
+guid: bbe252e8cb0038f49b77012e3ba9762e
+=======
+guid: a49b9d79140d3ac47ba53b2c2784d8a8
+>>>>>>> ryu_sub16:jpgameaward/Assets/S_ryu/Prefab/Item.prefab.meta
+>>>>>>> ryu_sub16
 PrefabImporter:
   externalObjects: {}
   userData: 
