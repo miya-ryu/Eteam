@@ -20,6 +20,10 @@ public class Kaifuku_Effect : MonoBehaviour
             newParticle.transform.parent = collision.gameObject.transform;
             //
             newParticle.Play();
+            //
+            Destroy(this.gameObject);
+            //
+            Destroy(newParticle.gameObject, 4.0f);
         }
     }
 }
