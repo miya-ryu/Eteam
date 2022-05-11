@@ -20,8 +20,7 @@ public class StageSelect : MonoBehaviour
         if (stageNumber >= 2)
         {
             Stage2.interactable = true;
-            Stage2Text.text = "STAGE2"; //ステージ2の名前
-            PlayerPrefs.DeleteAll();
+            Stage2Text.text = "ステージ２"; //ステージ2の名前
         }
     }
 }

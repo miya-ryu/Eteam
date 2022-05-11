@@ -13,18 +13,18 @@ public class SceneChange : MonoBehaviour
     {   
         pause = GameManager.pause;
 
-        if (SceneManager.GetActiveScene().name == "TitleScene" && Input.GetButton("start")) 　//シーンがTitleSceneの時startボタンが押されたら
+        if (SceneManager.GetActiveScene().name == "TitleScene" && Input.GetButton("A")) 　//シーンがTitleSceneの時Aボタンが押されたら
         {
             SceneManager.LoadScene("StageSelect");
         }
 
-        if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
+        if (SceneManager.GetActiveScene().name == "ResultScene" && Input.GetButton("A")) 　//シーンがClearSceneの時Aボタンが押されたら
         {
             PushClip.Push();
 
             SceneManager.LoadScene("TitleScene");
         }
-        if (SceneManager.GetActiveScene().name == "ResultScene1" && Input.GetButton("start")) 　//シーンがClearSceneの時startボタンが押されたら
+        if (SceneManager.GetActiveScene().name == "ResultScene1" && Input.GetButton("A")) 　//シーンがClearSceneの時Aボタンが押されたら
         {
             PushClip.Push();
 
